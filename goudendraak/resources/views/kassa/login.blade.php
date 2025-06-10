@@ -1,5 +1,5 @@
 <div id="loginDiv">
-    <form action="{{route('login')}}" method="POST">
+    <form action="{{route('guest.login')}}" method="POST">
         @csrf
         <input type="number" name="employeeNr" placeholder="Medewerker Nummer" min="1"><br>
         <input type="password" name="password" placeholder="Wachtwoord"><br>
