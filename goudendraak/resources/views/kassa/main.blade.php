@@ -1,6 +1,6 @@
-@require('./kassa/cashDesk');
-@require('./kassa/menu');
-@require('./kassa/sales');
+@include('./kassa/cashDesk');
+@include('./kassa/menu');
+@include('./kassa/sales');
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

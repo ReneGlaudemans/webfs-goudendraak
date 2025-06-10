@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -12,9 +13,15 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        // Logic for handling user login
-        // This is where you would authenticate the user
-        // and return a response accordingly.
+        $credentials = $request->validate([
+            'employeeNr' => 'required|numeric',
+            'password' => 'required|string'
+        ]);
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->intended('index');
+        }
+        return back()->withErrors(['employeeNr' => 'The provided credentials do not match our records.']);
     }
 
     /**
@@ -22,8 +29,9 @@ class AuthController extends Controller
      */
     public function destroy(Request $request)
     {
-        // Logic for handling user logout
-        // This is where you would log out the user
-        // and return a response accordingly.
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('kassa.index');
     }
 }

@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::post('login', [AuthController::class, 'store']);
+    Route::post('login', [AuthController::class, 'store'])->name('login');
 });
 
 Route::middleware('auth')->group(function () {
