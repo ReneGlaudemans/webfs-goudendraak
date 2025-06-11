@@ -15,9 +15,7 @@
     <img id="logo" src="{{asset('./img/goodpay.png')}}" alt="goodpay logo">
 
     <div id='buttonBar'>
-        <?php
-            if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']){
-        ?>
+        @auth
 
             <button id='cashDeskBtn' class='menuButton'>
                 Kassa
@@ -29,15 +27,13 @@
             <button id='salesBtn' class='menuButton'>
                 Verkoop Overzicht
             </button>
-            
-            <a class='menuLink' href='logout.php'>
-                <div class='menuButton'>
-                        Log Uit
-                </div>
-            </a>
-            
-        <?php
-          }
-        ?>
+            <form action={{route('logout')}} method="POST" >
+                @csrf
+                    <button type='submit' class='menuButton'>
+                    Log Uit
+                </button>
+            </form>
+           
+       @endauth
     </div>
 </div>

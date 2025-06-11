@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Menu;
 class KassaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('kassa.index');
+    {   
+        $menuItemsType = Menu::select('soortgerecht')->distinct()->get();
+        $menuItems = Menu::orderBy('id','asc')->orderBy('menunummer','asc')->orderBy('menu_toevoeging','asc')->get();
+        return view( 'kassa.index',compact('menuItems','menuItemsType'));
     }
 
     /**
