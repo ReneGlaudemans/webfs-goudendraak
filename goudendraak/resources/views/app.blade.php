@@ -1,243 +1,56 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"  @class(['dark' => ($appearance ?? 'system') == 'dark'])>
-    <head>
-        <title>The Golden Dragon</title>
-		<style>
-			body {background-color: darkred; margin: 15px; margin-left: 50px; margin-right: 50px}
-			td {padding: 0px;}
-			
-		@font-face {
-			font-family: 'chinese_takeawayregular';
-			src: url('fonts/chinesetakeaway-webfont.woff2') format('woff2'),
-				 url('fonts/chinesetakeaway-webfont.woff') format('woff');
-			font-weight: normal;
-			font-style: normal;
-		}
-		a {text-decoration: none;
-		color: yellow;}
-		</style>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-100">
 
-        {{-- Inline script to detect system dark mode preference and apply it immediately --}}
-        <script>
-            (function() {
-                const appearance = '{{ $appearance ?? "system" }}';
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                if (appearance === 'system') {
-                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    <title>The Golden Dragon</title>
 
-                    if (prefersDark) {
-                        document.documentElement.classList.add('dark');
-                    }
-                }
-            })();
-        </script>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="{{asset('css/app.css')}}" />
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    </head>
-    <body class="font-sans antialiased">
-        {{-- @inertia --}}
-        <table id="main_table" style="padding:5px;width:100%;border-collapse: collapse">
-			<tr style="height:50px;background-color:red"> 
-				<td style="text-align:center;width:30%;color:yellow;font-size:30px">
-						<img style="vertical-align: middle;" src="{{asset('./img/dragon-small.png')}}" alt="Golden Dragon" height="50px">
-						<span style="font-family:'chinese_takeawayregular'">De Gouden Draak</span>
-						<img style="vertical-align: middle;" src="{{asset('./img/dragon-small-flipped.png')}}" alt="Golden Dragon" height="50px">
-				</td>
-				<td>
-					<a href="paginas/aanbiedingen.html" style="color:yellow;font-weight:bold;text-decoration: none;">
-						<marquee behavior="scroll" direction="left">
-							Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!
-						</marquee>
-					</a>
-				</td>
-				<td style="text-align:center;width:30%;color:yellow;font-size:30px">
-						<img style="vertical-align: middle;" src="{{asset('./img/dragon-small.png')}}" alt="Golden Dragon" height="50px">
-						<span style="font-family:'chinese_takeawayregular'">De Gouden Draak</span>
-						<img style="vertical-align: middle;" src="{{asset('./img/dragon-small-flipped.png')}}" alt="Golden Dragon" height="50px">
-				</td>
-			</tr>
-		</table>
-		<table id="main_table" style="padding:5px;width:100%;border-collapse: collapse">
-			<tr style="height:7px;background-color:red">
-				<td colspan="9">
-				</td>
-			<tr>
-			<tr style="height:25px;background-color:red">
-				<td width="7px">
-				</td>
-				<td style="width:25px;border-left:4px solid yellow;border-top:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-top:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="border-top:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border-left:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border-left:4px solid yellow;border-top:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-top:4px solid yellow"></td>
-				<td width="7px">
-			</tr>
-			<tr style="height:25px;background-color:red">
-				<td width="7px">
-				<td style="width:25px;border-left:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td width="7px">
-			</tr>
-			<tr style="height:25px;background-color:red">
-				<td width="7px">
-				<td style="width:25px;border-right:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px"></td>
-				<td></td>
-				<td style="width:25px"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border-bottom:4px solid yellow"></td>
-				<td width="7px">
-			</tr>
-			<tr style="height:50px;background-color:red"> 
-				<td width="7px">
-				<td style="width:25px;border-right:4px solid yellow;border-left:4px solid yellow"></td>
-				<td style="width:25px;"></td>
-				<td style="width:25px;"></td>
-				<td style="text-align:center">
-					<!-- CONTENT HERE! -->
-					<table width=100%>
-						<tr>
-							<td colspan='3'>
-								<p>
-									<img src="{{asset('./img/dragon-small.png')}}" style="float:left;height:200px" alt="Golden Dragon"> 
-									<img src="{{asset('./img/dragon-small-flipped.png')}}" style="float:right;height:200px" alt="Golden Dragon"> 
-									<span style="font-size:40px;font-weight:bold;color:yellow">Chinees Indische Specialiteiten</span><br>
-									<span style="font-size:50px;font-weight:bold;color:yellow">De Gouden Draak</span><br>
-								</p>
-								<p>
-									<table style="margin:auto;font-size:20px;color:white" border="1px solid white">
-										<tr background="{{asset('img/menu_bg_gradient.png')}}">
-											<td valign="middle">
-												<a href="paginas/MENUKAART.html" style="color:white">
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menukaart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												</a>
-											</td>
-											<td valign="middle">
-												<a href="paginas/news.html" style="color:white">
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nieuws&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												</a>
-											</td>
-											<td valign="middle">
-												<a href="paginas/contact.html" style="color:white">
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												</a>
-											</td>
-										</tr>
-									</table>
-								</p>
-							</td>
-						</tr>
-						<tr style="padding-top:50px">
-							<td colspan="3" height="50px">	
-							</td>
-						</tr>
-						<tr style="padding-top:50px">
-							<td width="50px">	
-							</td>
-							<td align="center" style='font-size:5;border:1px solid black;background:floralwhite'> <br>
-								<h3>Al jaren is De Gouden Draak een begrip als het gaat om de beste afhaalgerechten in 's-Hertogenbosch.<br>
-								Graag trakteren we u op authentieke gerechten uit de Cantonese keuken.</h3>
-								<br>
-								<h2><u>Speciale Studentenaanbieding</h2></u>
-								<h1>Chinese Rijsttafel (2 personen)</h1>
-								<h3>
-									Maak een keuze uit 3 van onderstaande keuzegerechten:<br><br>
-									<table width="60%">
-										<tr>
-											<td width="40%" style="text-align:right">
-												Koe Loe Yuk
-											</td>
-											<td width="20%">
-											</td>
-											<td width="40%">
-												Foe Yong Hai
-											</td>
-										</tr>
-										<tr>
-											<td style="text-align:right">
-												Tjap Tjoy
-											</td>
-											<td>
-											</td>
-											<td>
-												Garnalen met Gebakken Knoflook
-											</td>
-										</tr>
-										<tr>
-											<td style="text-align:right">
-												Babi Pangang
-											</td>
-											<td>
-											</td>
-											<td>
-												Kipfilet in Zwarte Bonen saus
-											</td>
-										</tr>
-									</table>
-									<br>
-									Met witte rijst. (Nasi of bami voor meerprijs mogelijk.)
-								</h3>
-								<h1>Prijs: €21,00</h1>
-							</td>
-							<td width="50px">	
-							</td>
-						</tr>
-					</table>
-					<br>
-					<div text-align="center"><a href="paginas/contact_new.html">Naar Contact</a></div>
-				</td>
-				<td style="width:25px;"></td>
-				<td style="width:25px;"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-left:4px solid yellow"></td>
-				<td width="7px">
-			</tr>
-			<tr style="height:25px;background-color:red">
-				<td width="7px">
-				<td style="width:25px;border-right:4px solid yellow;border-top:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px"></td>
-				<td></td>
-				<td style="width:25px"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border-top:4px solid yellow"></td>
-				<td width="7px">
-			</tr>
-			<tr style="height:25px;background-color:red">
-				<td width="7px">
-				<td style="width:25px;border-left:4px solid yellow;border-top:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-top:4px solid yellow"></td>
-				<td width="7px">
-			</tr>
-			<tr style="height:25px;background-color:red">
-				<td width="7px">
-				</td>
-				<td style="width:25px;border-left:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow"></td>
-				<td style="border-top:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border-left:4px solid yellow;"></td>
-				<td style="width:25px;border-left:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td style="width:25px;border-right:4px solid yellow;border-bottom:4px solid yellow"></td>
-				<td width="7px">
-			</tr>
-			<tr style="height:7px;background-color:red">
-				<td colspan="9">
-				</td>
-			<tr>
-		</table>
-    </body>
+    @vite('resources/js/app.ts')
+</head>
+
+<body class="h-full">
+    <nav class="bg-gray-800">
+        <div class="min-h-full">
+            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                <div class="relative flex h-16 items-center justify-between">
+                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div class="flex flex-shrink-0 items-center">
+                            <a href="/">
+                                <img class="h-8 w-auto" src="{{ asset('img/dragon-small.png') }}" alt="The Golden Dragon">
+                            </a>
+                        </div>
+                        <div class="sm:ml-6 sm:block">
+                            <div class="flex ml-10 space-x-4">
+                                <x-nav-link href="/orders" :active="request()->is('orders')">Bestellen</x-nav-link>
+                                <x-nav-link href="/dishes" :active="request()->is('dishes')">Menu</x-nav-link>
+                                <x-nav-link href="/categories" :active="request()->is('categories')">Categoriën</x-nav-link>
+                                <x-nav-link href="/restaurant" :active="request()->is('restaurant')">Restaurant</x-nav-link>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <x-nav-link href="/menu/pdf">Download menu</x-nav-link>
+                    </div>
+                    <div>
+                        <a href="/order">
+                            <img class="h-8 w-auto cart ml-3" src="{{ asset('img/cart.png') }}" alt="The Golden Dragon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </nav>
+    </div>
+    <div class="container mx-auto">
+        @yield('content')
+        <script src="{{ asset('js/menu.js') }}"></script>
+</body>
+
 </html>
