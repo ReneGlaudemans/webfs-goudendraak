@@ -18,7 +18,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $categories = Category::with('dishes')->get();
-        return view('order.index', compact('categories'));
+        return view('afhalen.index', compact('categories'));
     }
 
 
@@ -44,7 +44,7 @@ class OrderController extends Controller
         // Store the order in session
         session()->put('order', $order);
 
-        return redirect()->route('orders.index')->with('success', 'Item added to order.');
+        return redirect()->route('orders.index')->with('success', 'Toegevoegd aan bestelling.');
     }
 
     // View the order
@@ -109,13 +109,23 @@ class OrderController extends Controller
 
         // Create order items
         foreach ($order as $item) {
-            Order_Dish::create([
-                'order_id' => $orderdb->id,
-                'dish_id' => $item['id'],
-                'quantity' => $item['quantity'],
-                'remark' => $item['remark'],
-                'price' => $item['price'],
-            ]);
+            if(isset($item['remark'])){
+                Order_Dish::create([
+                    'order_id' => $orderdb->id,
+                    'dish_id' => $item['id'],
+                    'quantity' => $item['quantity'],
+                    'remark' => $item['remark'],
+                    'price' => $item['price'],
+                ]);
+            }
+            else{
+                Order_Dish::create([
+                    'order_id' => $orderdb->id,
+                    'dish_id' => $item['id'],
+                    'quantity' => $item['quantity'],
+                    'price' => $item['price'],
+                ]);
+            }
             $dishIds[] = $item['id'];
         }
         $qrdata = [

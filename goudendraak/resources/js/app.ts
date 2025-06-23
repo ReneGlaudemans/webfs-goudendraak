@@ -1,9 +1,10 @@
-import './bootstrap';
 import { createApp } from 'vue';
-import SearchDishesComponent from './components/SearchDishesComponent.vue';
+import GerechtFilter from './components/GerechtFilter.vue';
 
 const app = createApp({});
 
-app.component('search-component', SearchDishesComponent);
+// Register globale component
+app.component('GerechtFilter', GerechtFilter);
 
+// Mount op een specifiek element in je Blade
 app.mount('#app');

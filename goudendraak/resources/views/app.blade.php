@@ -1,7 +1,10 @@
 <!doctype html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-100">
 	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>The Golden Dragon</title>
+		<link rel="stylesheet" href="{{asset('css/app.css')}}" />
 		<style>
 			body {background-color: darkred; margin: 15px; margin-left: 50px; margin-right: 50px}
 			td {padding: 0px;}
@@ -17,6 +20,7 @@
 		a {text-decoration: none;
 		color: yellow;}
 		</style>
+		{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 	</head>
 	
 	<body>
@@ -111,6 +115,16 @@
 											<td valign="middle">
 												<a href="/contact" style="color:white">
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												</a>
+											</td>
+											<td valign="middle">
+												<a href="/orders" style="color:white">
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Afhalen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												</a>
+											</td>
+											<td valign="middle">
+												<a href="/menu/pdf" style="color:white">
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												</a>
 											</td>
 										</tr>
