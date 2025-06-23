@@ -7,7 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ReceiptController;
-use App\Http\Controllers\OrderExportController; // Add this line
+use App\Http\Controllers\OrderExportController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -15,7 +15,9 @@ Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
 Route::get('/restaurant',[RestaurantController::class,'index'])->name('restaurant.index');
 Route::get('/table/{id}',[RestaurantController::class,'show'])->name('restaurant.show');
 Route::resource('customers',CustomerController::class);
-
+Route::view('/menukaart','menukaart.menu');
+Route::view('/contact','contact.contact');
+Route::view('/news', 'news.news');
 Route::get('/getdishes', [DishController::class, 'getDishes']);
 Route::resource('dishes', DishController::class);
 Route::resource('categories', CategoryController::class);
