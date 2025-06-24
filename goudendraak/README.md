@@ -10,7 +10,7 @@ First make sure you have the following installed:
 ```
 
 ```sh
-    git clone git@github.com:RubenvanderHout/webfs-goudendraak.git
+    git clone git@github.com:ReneGlaudemans/webfs-goudendraak.git
     cd webfs-goudendraak
     npm install
     composer install
