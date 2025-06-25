@@ -38,9 +38,6 @@ class OrderController extends Controller
             $order[$item['id']] = $item;
         }
 
-
-
-
         // Store the order in session
         session()->put('order', $order);
 
@@ -97,7 +94,6 @@ class OrderController extends Controller
     {
         // Get the order items (this could be from session, or a Cart model/service)
         $order = session()->get('order', []);
-
         if (empty($order)) {
             return redirect()->back()->with('error', 'Your order is empty!');
         }

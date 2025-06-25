@@ -10,10 +10,12 @@ use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\OrderExportController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KassaController;
+use App\Http\Controllers\KassaOrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
 Route::get('/kassa', [KassaController::class,'index'])->name('kassa.index');
+Route::post('/kassa/pay', [KassaOrderController::class, 'pay'])->name('kassa.pay');
 Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
 Route::get('/restaurant',[RestaurantController::class,'index'])->name('restaurant.index');
 Route::get('/table/{id}',[RestaurantController::class,'show'])->name('restaurant.show');

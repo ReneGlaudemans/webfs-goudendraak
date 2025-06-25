@@ -4,7 +4,7 @@
 
 #cashDeskLeft {
     margin-top:20px;
-    width: 60%;
+    width: 50%;
     height: 600px;
     border-right: 2px solid rgb(0,102,255);
     padding: 10px;
@@ -17,7 +17,7 @@
     height: 600px;
     padding: 10px;
     box-sizing: border-box;
-    width: 40%;
+    width: 50%;
     float: left;
 }
 
@@ -88,7 +88,7 @@ width: 70%;
 }
 
 .itemSelectedTable tr td:nth-child(2){
-    width: 65%;
+    width: 30%;
 }
 
 .itemToSelectTable tr td:nth-child(3),

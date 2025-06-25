@@ -6,7 +6,6 @@
 <link rel='stylesheet' type='text/css' href='css/menu.css'>
 <link rel='stylesheet' type='text/css' href='css/sales.css'>
 
-<script src="js/cashDesk.js" defer></script>
 <script src="js/header.js" defer></script>
 <script src="js/sales.js" defer></script>
 <script src="js/main.js" defer></script>
@@ -15,10 +14,7 @@
     <img id="logo" src="{{asset('img/goodpay.png')}}" alt="goodpay logo">
 
     <div id='buttonBar'>
-        <?php
-            if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']){
-        ?>
-
+        @auth
             <button id='cashDeskBtn' class='menuButton'>
                 Kassa
             </button>
@@ -29,15 +25,12 @@
             <button id='salesBtn' class='menuButton'>
                 Verkoop Overzicht
             </button>
-            
-            <a class='menuLink' href='logout.php'>
+
+            <a class='menuLink' href='/logout'>
                 <div class='menuButton'>
-                        Log Uit
+                    Log Uit
                 </div>
             </a>
-            
-        <?php
-          }
-        ?>
+        @endauth
     </div>
 </div>

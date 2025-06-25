@@ -8,3 +8,7 @@ app.component('GerechtFilter', GerechtFilter);
 
 // Mount op een specifiek element in je Blade
 app.mount('#app');
+
+document.addEventListener('vue:add-menu-item', function(e) {
+    window.addMenuItem(e.detail);
+});
