@@ -9,10 +9,11 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\OrderExportController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KassaController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
-Route::view('/kassa', 'kassa.index');
+Route::get('/kassa', [KassaController::class,'index'])->name('kassa.index');
 Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
 Route::get('/restaurant',[RestaurantController::class,'index'])->name('restaurant.index');
 Route::get('/table/{id}',[RestaurantController::class,'show'])->name('restaurant.show');
@@ -31,6 +32,6 @@ Route::post('/order/remove', [OrderController::class, 'removeFromOrder'])->name(
 Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 Route::post('/login',[AuthController::class, 'authenticate']);
 Route::get('/receipt/{table}/pdf',[ReceiptController::class, 'exportToPDF'])->name('receipt.pdf');
-
+Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/downloads', [OrderExportController::class, 'index'])->name('downloads.index');
 Route::get('/downloads/{file}', [OrderExportController::class, 'download'])->name('downloads.download');

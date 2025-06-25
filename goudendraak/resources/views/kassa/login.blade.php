@@ -6,9 +6,8 @@
         <input type="submit" value="inloggen"><br>
     </form>
 </div>
-@if($errors->any())
-    {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif
-@if($errors->any())
-<div class='errorMessage'>{{$error->message}}</div>
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div class='errorMessage'>{{ $error }}</div>
+    @endforeach
 @endif

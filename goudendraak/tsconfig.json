@@ -23,5 +23,5 @@
         "resources/js/**/*.vue",
         "resources/js/**/*.ts",
         "vite.config.ts"
-    ]
+, "public/js/cashDesk.js", "public/js/header.js", "public/js/main.js", "public/js/sales.js"    ]
 }

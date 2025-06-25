@@ -29,6 +29,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+    public function getAuthIdentifierName()
+    {
+        
+        return 'employeeId';
+    }
 
     /**
      * Get the attributes that should be cast.

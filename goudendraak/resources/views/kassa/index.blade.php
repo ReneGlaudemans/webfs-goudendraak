@@ -5,12 +5,11 @@
     </head>
 
     <body>
-        @include('kassa.header')
+        @include('./kassa/header')
         @auth
-            @include('kassa.main')
+            @include('./kassa/main')
+        @else
+            @include('./kassa/login')
         @endauth
-        @guest
-            @include('kassa.login')
-        @endguest
     </body>
 </html>
