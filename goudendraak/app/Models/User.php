@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'employeeId',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -31,7 +32,7 @@ class User extends Authenticatable
     ];
     public function getAuthIdentifierName()
     {
-        
+
         return 'employeeId';
     }
 
@@ -45,5 +46,10 @@ class User extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
     }
 }

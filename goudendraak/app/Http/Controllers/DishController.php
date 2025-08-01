@@ -14,9 +14,9 @@ class DishController extends Controller
      */
     public function index(Request $request)
     {
-        return view('dishes.index');
+        $dishes = Dish::all();
+        return view('dishes.index', compact('dishes'));
     }
-
 
     public function getDishes(Request $request)
     {
@@ -25,7 +25,7 @@ class DishController extends Controller
         $dishItems = Dish::query()
             ->when($search, function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%");
+                    ->orWhere('description', 'like', "%{$search}%");
             })
             ->get(['id', 'category_id', 'description', 'name']);
 
@@ -40,7 +40,7 @@ class DishController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('dishes.create',compact('categories'));
+        return view('dishes.create', compact('categories'));
     }
 
     /**
@@ -49,19 +49,19 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id'=>['required','unique:dishes'],
-            'name'=>['required','min:2','max:255'],
-            'description'=>['max:255'],
-            'price'=>['required','decimal:2'],
-            'category'=>['required']
+            'id' => ['required', 'unique:dishes'],
+            'name' => ['required', 'min:2', 'max:255'],
+            'description' => ['max:255'],
+            'price' => ['required', 'decimal:2'],
+            'category' => ['required']
         ]);
 
         Dish::create([
-            'id'=>$request->id,
-            'name'=>$request->name,
-            'description'=>$request->description,
-            'price'=>$request->price,
-            'category_id'=>$request->category
+            'id' => $request->id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'category_id' => $request->category
         ]);
         return redirect('dishes');
     }
@@ -73,7 +73,7 @@ class DishController extends Controller
     {
         $dish = Dish::find($id);
         $category = Category::find($dish->category_id);
-        return view('dishes.show',compact('dish','category'));
+        return view('dishes.show', compact('dish', 'category'));
     }
 
     /**
@@ -83,7 +83,7 @@ class DishController extends Controller
     {
         $dish = Dish::find($id);
         $categories = Category::all();
-        return view('dishes.edit',compact('dish','categories'));
+        return view('dishes.edit', compact('dish', 'categories'));
     }
 
     /**
@@ -92,22 +92,22 @@ class DishController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'id'=>['required'],
-            'name'=>['required','min:2','max:255'],
-            'description'=>['max:255'],
-            'price'=>['required','decimal:2'],
-            'category'=>['required']
+            'id' => ['required'],
+            'name' => ['required', 'min:2', 'max:255'],
+            'description' => ['max:255'],
+            'price' => ['required', 'decimal:2'],
+            'category' => ['required']
         ]);
         $dish = Dish::findOrFail($id);
 
         $dish->update([
-            'id'=>$request->id,
-            'name'=>$request->name,
-            'description'=>$request->description,
-            'price'=>$request->price,
-            'category_id'=>$request->category
+            'id' => $request->id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'category_id' => $request->category
         ]);
-        return redirect('dishes/'.$dish->id);
+        return redirect('dishes/' . $dish->id);
     }
 
     /**

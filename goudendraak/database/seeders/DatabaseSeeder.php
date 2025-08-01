@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'employeeId' => 1,
             'password' => Hash::make('password'),
+            'is_admin' => true,
         ]);
 
         $this->call([
