@@ -1,17 +1,15 @@
-{{-- filepath: resources/views/kassa/cashDesk.blade.php --}}
 <div id="cashDeskPage">
     <div id="cashDeskLeft">
         <div id="itemsToSelect">
             <div id="app">
                 <gerecht-filter :categories='@json($categories)'></gerecht-filter>
             </div>
-
         </div>
     </div>
     <div id="cashDeskRight">
         <div id="itemsSelectedContainer">
-            <form method="POST" action="{{ route('kassa.pay') }}">
-                @csrf
+            {{-- <form method="POST" action="{{ route('kassa.pay') }}"> --}}
+                {{-- @csrf --}}
                 <div id="itemsSelected">
                     <div class='orderHeader'>Bestelling</div>
                     <table class='itemSelectedTable'>
@@ -42,7 +40,6 @@
                 </div>
                 <div id="itemsSelectedTotal">
                     <table class='itemSelectedTotalTable'>
-
                         <tr>
                             <td></td>
                             <td>Totaal:</td>
@@ -50,13 +47,14 @@
                                 <span>€ </span><span class="totalAmount">0,00</span>
                             </td>
                             <td>
-                                <button type="submit">Afrekenen</button>
+                                <button class="payOrder" type="submit">Afrekenen</button>
                                 <button class="clearOrder" type="reset">Verwijderen</button>
                             </td>
                         </tr>
                     </table>
                 </div>
-            </form>
+                {{--
+            </form> --}}
         </div>
     </div>
 </div>
