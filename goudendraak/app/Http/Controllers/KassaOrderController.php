@@ -4,33 +4,31 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Category;
+use App\Models\Order;
+use App\Models\Order_Dish;
 
 class KassaOrderController extends Controller
 {
     public function pay(Request $request)
     {
-        dd('Betaling ontvangen', $request->all());
         $validated = $request->validate([
             'dishes' => 'required|array',
-            'remark' => 'nullable|string|max:255',
         ]);
 
         // Maak een nieuwe order aan
-        $order = \App\Models\Order::create([
-            'remark' => $validated['remark'] ?? null,
-            // eventueel andere velden zoals tafel_id, user_id, etc.
+        $order = Order::create([
+            'table_id' => 1,
         ]);
 
         // Voeg de gerechten toe
         foreach ($validated['dishes'] as $dishId => $amount) {
             if ($amount > 0) {
-                \App\Models\Order_Dish::create([
+                $remark = $request->input('remarks.' . $dishId); // Per dish remark
+                Order_Dish::create([
                     'order_id' => $order->id,
                     'dish_id' => $dishId,
                     'quantity' => $amount,
+                    'remark' => $remark, // Only if your Order_Dish model/table has a 'remark' column
                 ]);
             }
         }

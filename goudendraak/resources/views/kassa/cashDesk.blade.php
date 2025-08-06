@@ -8,31 +8,31 @@
     </div>
     <div id="cashDeskRight">
         <div id="itemsSelectedContainer">
-            {{-- <form method="POST" action="{{ route('kassa.pay') }}"> --}}
-                {{-- @csrf --}}
+            <form method="POST" action="{{ route('kassa.pay') }}">
+                @csrf
                 <div id="itemsSelected">
                     <div class='orderHeader'>Bestelling</div>
                     <table class='itemSelectedTable'>
                         @foreach($categories as $category)
                             @foreach($category->dishes as $dish)
                                 <tr class="hidden menuItem_{{ $dish->id }}" data-price="{{ $dish->price }}">
-                                    <td>
-                                        {{ $dish->id ?? '' }}.
-                                    </td>
-                                    <td>
-                                        {{ $dish->name }}
+                                    <td>{{ $dish->id ?? '' }}.</td>
+                                    <td>{{ $dish->name }}
                                         @if(!empty($dish->description))
                                             <i>({{ $dish->description }})</i>
                                         @endif
                                     </td>
                                     <td>
-                                        <span>€ </span><span
-                                            class="subAmount">{{ number_format($dish->price, 2, ',', ' ') }}</span>
+                                        <span>€ </span>
+                                        <span class="subAmount">{{ number_format($dish->price, 2, ',', ' ') }}</span>
                                     </td>
                                     <td>
-                                        <input type="number" name="amount" min="0" value="0">
+                                        <input type="number" name="dishes[{{ $dish->id }}]" min="0" value="0">
                                     </td>
-                                    <td><input type="text" name="remark" placeholder="Opmerking voor {{ $dish->name }}" /></td>
+                                    <td>
+                                        <input type="text" name="remarks[{{ $dish->id }}]"
+                                            placeholder="Opmerking voor {{ $dish->name }}" />
+                                    </td>
                                 </tr>
                             @endforeach
                         @endforeach
@@ -47,14 +47,13 @@
                                 <span>€ </span><span class="totalAmount">0,00</span>
                             </td>
                             <td>
-                                <button class="payOrder" type="submit">Afrekenen</button>
-                                <button class="clearOrder" type="reset">Verwijderen</button>
+                                <button id="payOrder" type="submit">Afrekenen</button>
+                                <button id="clearOrder" type="reset">Verwijderen</button>
                             </td>
                         </tr>
                     </table>
                 </div>
-                {{--
-            </form> --}}
+            </form>
         </div>
     </div>
 </div>
@@ -93,3 +92,4 @@
         document.querySelector(".totalAmount").innerHTML = "0,00";
     });
 </script>
+<script src="{{ asset('js/cashDesk.js') }}"></script>

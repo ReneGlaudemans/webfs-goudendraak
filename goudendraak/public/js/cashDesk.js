@@ -82,26 +82,12 @@ if(payOrderButton != null){
             orderData = JSON.stringify(orderData);
 
             var http = new XMLHttpRequest();
-            var url = 'payOrder.php';
-            http.open('POST', url, true);
-
-            //Send the proper header information along with the request
-            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-            http.onreadystatechange = function() {//Call a function when the state changes.
-                if(http.readyState == 4 && http.status == 200) {
-                    var response = JSON.parse(http.responseText);
-                    
-                    if(response.includes("Verkoop succesvol")){
-                        modal.querySelector("p").innerHTML = "Verkoop succesvol!";
-                    } else {
-                        modal.querySelector("p").innerHTML = "Iets is verkeerd gegaan. Contacteer Peter.";
-                    }
-
-                    modal.style.display = "block";
-                }
-            }
-            http.send("orderData="+orderData);
+            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            var url = '/kassa/pay';
+            http.open('POST', url,true);
+            http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            http.setRequestHeader('X-CSRF-TOKEN', token);
+            http.send(orderData);
 
             var selectedItems = document.querySelectorAll(".itemSelectedTable .selected");
             

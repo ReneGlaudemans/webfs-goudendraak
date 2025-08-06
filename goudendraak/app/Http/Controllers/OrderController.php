@@ -105,7 +105,7 @@ class OrderController extends Controller
 
         // Create order items
         foreach ($order as $item) {
-            if(isset($item['remark'])){
+            if (isset($item['remark'])) {
                 Order_Dish::create([
                     'order_id' => $orderdb->id,
                     'dish_id' => $item['id'],
@@ -113,8 +113,7 @@ class OrderController extends Controller
                     'remark' => $item['remark'],
                     'price' => $item['price'],
                 ]);
-            }
-            else{
+            } else {
                 Order_Dish::create([
                     'order_id' => $orderdb->id,
                     'dish_id' => $item['id'],
