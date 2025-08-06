@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderExportController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\KassaOrderController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin'])->group(function () {
@@ -26,6 +27,7 @@ Route::view('/', 'welcome');
 Route::get('/kassa', [KassaController::class, 'index'])->name('kassa.index');
 Route::middleware(['auth'])->group(function () {
     Route::post('/kassa/pay', [KassaOrderController::class, 'pay'])->name('kassa.pay');
+    Route::post('/kassa/sales', [SalesController::class, 'index'])->name('sales.index');
 });
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/restaurant', [RestaurantController::class, 'index'])->name('restaurant.index');

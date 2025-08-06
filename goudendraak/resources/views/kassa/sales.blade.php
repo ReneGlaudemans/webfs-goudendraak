@@ -1,20 +1,22 @@
-<div id="salesPage" class="hidden">
+<div id="salesPage" @if(request('begindate') || request('enddate')) @else class="hidden" @endif>
     <div id="salesTopLeft">
         <div id="selectDates">
             <div id="dateSelectors">
                 <table class="dateSelect">
-                    <tbody>
-                        <tr>
-                            <td>Begin datum:</td>
-                            <td><input id="begindate" type="date" name="begindate"></input></td>
-                            <td rowspan="2"><button id="datesSelectedBtn">Maak Overzicht</button></td>
-                        </tr>
-                        <tr>
-                            <td>End datum:</td>
-                            <td><input id="enddate" type="date" name="enddate"></input></td>
-                            <td></td>
-                        </tr>
-                    <tbody>
+                    <form method="POST" {{route('sales.index')}}>
+                        <tbody>
+                            <tr>
+                                <td>Begin datum:</td>
+                                <td><input id="begindate" type="date" name="begindate"></input></td>
+                                <td rowspan="2"><button id="datesSelectedBtn" type=submit>Maak Overzicht</button></td>
+                            </tr>
+                            <tr>
+                                <td>End datum:</td>
+                                <td><input id="enddate" type="date" name="enddate"></input></td>
+                                <td></td>
+                            </tr>
+                        <tbody>
+                    </form>
                 </table>
             </div>
         </div>
@@ -24,12 +26,12 @@
             <table>
                 <tbody>
                     <tr>
-                        <td>Omzet:</td>
-                        <td><span>€ </span><span id="total">0,00</span></td>
+                        <td><span>€ </span><span id="total">{{ number_format($total ?? 0, 2, ',', '') }}</span></td>
                         <td>BTW:</td>
-                        <td><span>€ </span><span id="vat">0,00</span></td>
+                        <td><span>€ </span><span id="vat">{{ number_format($vat ?? 0, 2, ',', '') }}</span></td>
                         <td>excl. BTW:</td>
-                        <td><span>€ </span><span id="totalexvat">0,00</span></td>
+                        <td><span>€ </span><span
+                                id="totalexvat">{{ number_format($totalExVat ?? 0, 2, ',', '') }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -59,6 +61,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($overview ?? [] as $sale)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($sale['saleDate'])->format('d-m-Y') }}</td>
+                            <td>{{ $sale['naam'] }}</td>
+                            <td>€ {{ number_format($sale['price'], 2, ',', '') }}</td>
+                            <td>{{ $sale['amount'] }}</td>
+                            <td>€ {{ number_format($sale['subTotal'], 2, ',', '') }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5">Geen verkoop op de aangegeven datum</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

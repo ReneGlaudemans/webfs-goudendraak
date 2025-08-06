@@ -1,4 +1,4 @@
-<div id="cashDeskPage">
+<div id="cashDeskPage" @if(request('begindate') || request('enddate')) class="hidden" @endif>
     <div id="cashDeskLeft">
         <div id="itemsToSelect">
             <div id="app">
