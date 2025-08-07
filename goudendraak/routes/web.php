@@ -27,7 +27,7 @@ Route::view('/', 'welcome');
 Route::get('/kassa', [KassaController::class, 'index'])->name('kassa.index');
 Route::middleware(['auth'])->group(function () {
     Route::post('/kassa/pay', [KassaOrderController::class, 'pay'])->name('kassa.pay');
-    Route::post('/kassa/sales', [SalesController::class, 'index'])->name('sales.index');
+    Route::get('/kassa', [SalesController::class, 'index'])->name('sales.index');
 });
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/restaurant', [RestaurantController::class, 'index'])->name('restaurant.index');

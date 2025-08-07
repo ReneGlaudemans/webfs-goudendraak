@@ -3,7 +3,7 @@
         <div id="selectDates">
             <div id="dateSelectors">
                 <table class="dateSelect">
-                    <form method="POST" {{route('sales.index')}}>
+                    <form method="GET" action="{{ route('sales.index') }}">
                         <tbody>
                             <tr>
                                 <td>Begin datum:</td>

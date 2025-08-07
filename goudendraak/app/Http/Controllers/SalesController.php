@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order_Dish;
-use App\Models\Dish;
+use App\Models\Category;
 
 class SalesController extends Controller
 {
     public function index(Request $request)
     {
-
         $beginDate = $request->input('begindate');
         $endDate = $request->input('enddate');
 
@@ -52,7 +51,7 @@ class SalesController extends Controller
 
         $totalExVat = ($total / 106) * 100;
         $vat = $total - $totalExVat;
-        dd($overview);
-        return view('kassa.sales', compact('overview', 'total', 'totalExVat', 'vat', 'beginDate', 'endDate'));
+        $categories = Category::with('dishes')->get();
+        return view('kassa.index', compact('categories', 'overview', 'total', 'totalExVat', 'vat', 'beginDate', 'endDate'));
     }
 }

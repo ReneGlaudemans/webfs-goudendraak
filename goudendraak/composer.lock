@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd26626e15a366e5c3c9b56d9ee6f315",
+    "content-hash": "a1c10f6fc2043707982ef3d305a0cc0e",
     "packages": [
         {
             "name": "attrixtech/laravel-icons",
