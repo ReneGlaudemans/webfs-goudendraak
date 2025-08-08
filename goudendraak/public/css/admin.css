@@ -1,83 +1,270 @@
-.admin-table {
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background: #f6f6f6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and Navigation */
+.admin-header {
+    background: #bfa14a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-nav {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.admin-nav a {
+    color: #bfa14a;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+/* Main content container */
+.admin-content {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Table styles */
+.admin-table,
+.admin-show-table,
+.admin-edit-table {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .admin-table th,
-.admin-table td {
+.admin-table td,
+.admin-show-table th,
+.admin-show-table td,
+.admin-edit-table th,
+.admin-edit-table td {
     border: 1px solid #eee;
     padding: 12px 8px;
-    text-align: center;
+    text-align: left;
 }
 
-.admin-table th {
+.admin-table th,
+.admin-show-table th,
+.admin-edit-table th {
     background: #bfa14a;
     color: #fff;
     font-weight: bold;
+    width: 30%;
 }
 
-    .admin-table tr:nth-child(even) {
-        background: #f6f6f6;
-    }
+.admin-table td,
+.admin-show-table td,
+.admin-edit-table td {
+    background: #fff;
+}
 
+.admin-table tr:nth-child(even) {
+    background: #f6f6f6;
+}
+
+/* Button styles */
+.admin-btn,
+.admin-btn-create,
+.admin-btn-edit,
+.admin-btn-update,
+.admin-btn-delete {
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+    padding: 8px 18px;
+}
+
+.admin-btn {
+    background: #bfa14a;
+}
+
+.admin-btn:hover {
+    background: #a68d3c;
+}
+
+.admin-btn-create {
+    background: #4caf50;
+}
+
+.admin-btn-create:hover {
+    background: #388e3c;
+}
+
+.admin-btn-edit,
+.admin-btn-update {
+    background: #1976d2;
+}
+
+.admin-btn-edit:hover,
+.admin-btn-update:hover {
+    background: #115293;
+}
+
+.admin-btn-delete {
+    background: #d32f2f;
+}
+
+.admin-btn-delete:hover {
+    background: #b71c1c;
+}
+
+/* Show page styles */
+.admin-show-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.admin-show-title {
+    font-size: 1.5em;
+    color: #bfa14a;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.admin-show-subtitle {
+    color: #888;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-show-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Edit page styles */
+.admin-edit-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.admin-edit-title {
+    font-size: 1.5em;
+    color: #bfa14a;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.admin-edit-form {
+    width: 100%;
+}
+
+.admin-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #bfa14a;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.admin-error {
+    color: #d32f2f;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+.admin-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+.admin-create-container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        max-width: 500px;
+        margin: 30px auto;
+    }
+    .admin-create-title {
+        font-size: 1.5em;
+        color: #bfa14a;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .admin-create-form {
+        width: 100%;
+    }
+    .admin-create-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    .admin-create-table th, .admin-create-table td {
+        border: 1px solid #eee;
+        padding: 12px 8px;
+        text-align: left;
+    }
+    .admin-create-table th {
+        background: #bfa14a;
+        color: #fff;
+        width: 30%;
+    }
+    .admin-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #bfa14a;
+        border-radius: 4px;
+        font-size: 1em;
+    }
+    .admin-error {
+        color: #d32f2f;
+        font-size: 0.9em;
+        margin-top: 4px;
+    }
+    .admin-create-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 10px;
+    }
     .admin-btn {
         background: #bfa14a;
         color: #fff;
         border: none;
-        padding: 6px 16px;
+        padding: 8px 18px;
         border-radius: 4px;
         cursor: pointer;
         font-weight: bold;
         transition: background 0.2s;
     }
-
     .admin-btn:hover {
         background: #a68d3c;
     }
-
     .admin-btn-create {
         background: #4caf50;
     }
-
     .admin-btn-create:hover {
         background: #388e3c;
     }
-    body {
-            font-family: Arial, sans-serif;
-            background: #f6f6f6;
-            margin: 0;
-            padding: 0;
-        }
-
-        .admin-header {
-            background: #bfa14a;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .admin-nav {
-            background: #fff;
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        .admin-nav a {
-            color: #bfa14a;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        .admin-content {
-            max-width: 900px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }

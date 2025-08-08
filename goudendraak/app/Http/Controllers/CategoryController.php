@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories.index',compact('categories'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -30,10 +30,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>['required','unique:category'],
+            'name' => ['required', 'unique:categories'],
         ]);
         Category::create([
-            'name'=>$request->name,
+            'name' => $request->name,
         ]);
         return redirect('categories');
     }
@@ -44,7 +44,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.show',compact('category'));
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -53,7 +53,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
-        return view('categories.edit',compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -62,13 +62,13 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name'=>['required','unique:category'],
+            'name' => ['required', 'unique:categories'],
         ]);
         $category = Category::findOrFail($id);
         $category->update([
-            'name'=>$request->name,
+            'name' => $request->name,
         ]);
-        return redirect('categories/'.$category->id);
+        return redirect('categories/' . $category->id);
     }
 
     /**
