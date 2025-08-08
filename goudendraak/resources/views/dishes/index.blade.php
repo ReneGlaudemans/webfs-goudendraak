@@ -1,12 +1,13 @@
-@extends('app')
-@section('content')
-    <table>
+@extends('admin.dashboard')
+@section('admin-content')
+    <table class="admin-table">
         <thead>
             <tr>
                 <th scope="col">Nummer</th>
                 <th scope="col">Naam</th>
                 <th scope="col">Prijs</th>
-                <th scope="col"><a href="/dishes/create"><button type="button">Create</button></a></th>
+                <th scope="col"><a href="/dishes/create"><button class="admin-btn admin-btn-create"
+                            type="button">Toevoegen</button></a></th>
             </tr>
         </thead>
         <tbody>
@@ -15,7 +16,7 @@
                     <td>{{$dish->id}}</td>
                     <td>{{$dish->name}}</td>
                     <td>€{{$dish->price}}</td>
-                    <td><a href="/dishes/{{$dish->id}}"><button type="button">View</button></a></td>
+                    <td><a href="/dishes/{{$dish->id}}"><button class="admin-btn" type="button">Bekijk</button></a></td>
                 </tr>
             @endforeach
         </tbody>

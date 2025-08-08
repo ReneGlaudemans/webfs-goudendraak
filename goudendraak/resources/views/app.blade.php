@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>The Golden Dragon</title>
 	<link rel="stylesheet" href="{{asset('css/app.css')}}" />
+
 	<style>
 		body {
 			background-color: darkred;

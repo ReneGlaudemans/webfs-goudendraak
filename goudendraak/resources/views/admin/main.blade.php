@@ -1,4 +1,4 @@
-<nav>
-    <a href="/dishes">Gerechten</a> |
-    <a href="/categories">Categorieën</a> |
-</nav>
+@extends('dashboard')
+@section('admin-content')
+    Bier
+@endsection

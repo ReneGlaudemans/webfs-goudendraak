@@ -3,7 +3,7 @@
         <div id="selectDates">
             <div id="dateSelectors">
                 <table class="dateSelect">
-                    <form method="GET" action="{{ route('sales.index') }}">
+                    <form method="GET" action="{{ route('kassa.index') }}">
                         <tbody>
                             <tr>
                                 <td>Begin datum:</td>
@@ -17,6 +17,7 @@
                             </tr>
                         <tbody>
                     </form>
+
                 </table>
             </div>
         </div>
@@ -78,4 +79,11 @@
             </table>
         </div>
     </div>
+    @if(auth()->check() && auth()->user()->is_admin)
+        <form method="GET" action="{{ route('sales.download') }}">
+            <input type="hidden" name="begindate" value="{{ request('begindate') }}">
+            <input type="hidden" name="enddate" value="{{ request('enddate') }}">
+            <button type="submit" id="downloadExcelBtn">Download als Excel</button>
+        </form>
+    @endif
 </div>

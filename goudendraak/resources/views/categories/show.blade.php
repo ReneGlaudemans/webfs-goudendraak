@@ -1,5 +1,5 @@
-@extends('app')
-@section('content')
+@extends('admin.dashboard')
+@section('admin-content')
   <div>
     <div class="px-4 sm:px-0 mt-10">
     <h3 class="text-base font-semibold leading-7 text-gray-900">{{$category->name}}</h3>
