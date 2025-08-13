@@ -36,7 +36,6 @@ Route::resource('customers', CustomerController::class);
 Route::view('/menukaart', 'menukaart.menu');
 Route::view('/contact', 'contact.contact');
 Route::view('/news', 'news.news');
-Route::get('/getdishes', [DishController::class, 'getDishes']);
 Route::get('/menu/pdf', [MenuController::class, 'exportToPDF'])->name('menu.pdf');
 Route::post('/order/add', [OrderController::class, 'addToOrder'])->name('order.add');
 Route::get('/order', [OrderController::class, 'viewOrder'])->name('order.view');

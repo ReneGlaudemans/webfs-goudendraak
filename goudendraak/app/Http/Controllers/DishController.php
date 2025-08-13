@@ -18,22 +18,6 @@ class DishController extends Controller
         return view('dishes.index', compact('dishes'));
     }
 
-    public function getDishes(Request $request)
-    {
-        $search = $request->input('search');
-
-        $dishItems = Dish::query()
-            ->when($search, function ($query, $search) {
-                return $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
-            })
-            ->get(['id', 'category_id', 'description', 'name']);
-
-        return response()->json($dishItems);
-    }
-
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -49,11 +33,11 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => ['required', 'unique:dishes'],
-            'name' => ['required', 'min:2', 'max:255'],
-            'description' => ['max:255'],
-            'price' => ['required', 'decimal:2'],
-            'category' => ['required']
+            'id' => ['required', 'string', 'max:10', 'unique:dishes,id,' . ($id ?? 'NULL') . ',id'],
+            'name' => ['required', 'string', 'min:2', 'max:255'],
+            'description' => ['nullable', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0', 'max:999.99'],
+            'category' => ['required', 'exists:categories,id']
         ]);
 
         Dish::create([
@@ -92,11 +76,11 @@ class DishController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'id' => ['required'],
-            'name' => ['required', 'min:2', 'max:255'],
-            'description' => ['max:255'],
-            'price' => ['required', 'decimal:2'],
-            'category' => ['required']
+            'id' => ['required', 'string', 'max:10', 'unique:dishes,id,' . ($id ?? 'NULL') . ',id'],
+            'name' => ['required', 'string', 'min:2', 'max:255'],
+            'description' => ['nullable', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0', 'max:999.99'],
+            'category' => ['required', 'exists:categories,id']
         ]);
         $dish = Dish::findOrFail($id);
 

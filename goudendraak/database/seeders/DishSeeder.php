@@ -80,7 +80,7 @@ class DishSeeder extends Seeder
             'id' => '10',
             'category_id' => 2,
             'name' => 'Loempia Ling Fa',
-            'description' => '',
+            'description' => 'met atjar, ananas en pindasaus',
             'price' => 6.20
         ]);
 
@@ -88,7 +88,7 @@ class DishSeeder extends Seeder
             'id' => '11',
             'category_id' => 2,
             'name' => 'Loempia Compleet',
-            'description' => '',
+            'description' => 'met gesmoord rundvlees en pikante saus',
             'price' => 6.20
         ]);
 
@@ -160,7 +160,7 @@ class DishSeeder extends Seeder
             'id' => '18',
             'category_id' => 2,
             'name' => 'Chinese Dim Sum',
-            'description' => '',
+            'description' => 'mini loempia, kerry ko, pangsit goreng, garnalenpasteitje',
             'price' => 5.40
         ]);
 
@@ -191,8 +191,8 @@ class DishSeeder extends Seeder
         Dish::create([
             'id' => '21A',
             'category_id' => 2,
-            'name' => 'Fong Mei Ha (4st)',
-            'description' => '',
+            'name' => 'Fong Mei Ha',
+            'description' => 'krokant gepaneerd garnalen. 4 st.',
             'price' => 5.30
         ]);
 
@@ -202,6 +202,13 @@ class DishSeeder extends Seeder
             'name' => 'Tsa Sieuw Maa',
             'description' => '',
             'price' => 4.30
+        ]);
+        Dish::create([
+            'id' => '23',
+            'category_id' => 1,
+            'name' => 'Patat',
+            'description' => '',
+            'price' => 2.3
         ]);
 
         Dish::create([
@@ -247,9 +254,9 @@ class DishSeeder extends Seeder
         Dish::create([
             'id' => '29',
             'category_id' => 2,
-            'name' => 'Haaie kip',
+            'name' => 'Halve kip',
             'description' => '',
-            'price' => 4.00
+            'price' => 6
         ]);
 
         Dish::create([

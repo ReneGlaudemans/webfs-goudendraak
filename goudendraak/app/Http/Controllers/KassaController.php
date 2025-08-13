@@ -15,40 +15,34 @@ class KassaController extends Controller
 
         $query = Order_Dish::with('dish', 'order');
 
-        if ($beginDate) {
-            $query->whereHas('order', function ($q) use ($beginDate) {
-                $q->whereDate('created_at', '>=', $beginDate);
-            });
-        }
-        if ($endDate) {
-            $query->whereHas('order', function ($q) use ($endDate) {
-                $q->whereDate('created_at', '<=', $endDate);
-            });
+        if ($beginDate && $endDate) {
+            $query->whereBetween('created_at', [$beginDate, $endDate]);
         }
 
         $sales = $query->get();
+        $total = 0;
+        $price = 0;
 
         $grouped = $sales->groupBy(function ($item) {
-            return $item->order->created_at->format('Y-m-d') . '-' . $item->dish->name;
+            $dishName = $item->dish ? $item->dish->name : 'Onbekend';
+            return $item->created_at->format('Y-m-d') . '-' . $dishName;
         });
 
         $overview = [];
-        $total = 0;
         foreach ($grouped as $key => $items) {
             $first = $items->first();
             $amount = $items->sum('quantity');
-            $price = $first->dish->price;
+            $price = $first->dish ? $first->dish->price : 0;
             $subTotal = $amount * $price;
             $total += $subTotal;
             $overview[] = [
-                'saleDate' => $first->order->created_at->format('Y-m-d'),
-                'naam' => $first->dish->name,
+                'saleDate' => $first->created_at->format('Y-m-d'),
+                'naam' => $first->dish ? $first->dish->name : 'Onbekend',
                 'price' => $price,
                 'amount' => $amount,
                 'subTotal' => $subTotal,
             ];
         }
-
         $totalExVat = ($total / 106) * 100;
         $vat = $total - $totalExVat;
         $categories = Category::with('dishes')->get();
