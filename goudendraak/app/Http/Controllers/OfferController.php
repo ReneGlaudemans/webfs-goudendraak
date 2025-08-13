@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Offer;
+use App\Models\Dish;
 
 class OfferController extends Controller
 {
+    public function aanbiedingen()
+    {
+        $offers = Offer::with('dish')->whereDate('end_date', '>=', now())->get();
+        return view('aanbiedingen.aanbiedingen', compact('offers'));
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $offers = Offer::with('dish')->whereDate('end_date', '>=', now())->get();
+        $dishes = Dish::all();
+        return view('aanbiedingen.index', compact('offers', 'dishes'));
     }
 
     /**

@@ -1,6 +1,8 @@
 @include('./kassa/cashDesk')
 @include('./kassa/menu')
 @include('./kassa/sales')
+@include('./kassa/offers')
+
 <!-- The Modal -->
 <div id="myModal" class="modal">
     <!-- Modal content -->

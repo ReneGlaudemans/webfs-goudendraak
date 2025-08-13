@@ -47,7 +47,7 @@
 				</a>
 			</td>
 			<td>
-				<a href="paginas/aanbiedingen.html" style="color:yellow;font-weight:bold;text-decoration: none;">
+				<a href="/aanbiedingen" style="color:yellow;font-weight:bold;text-decoration: none;">
 					<marquee behavior="scroll" direction="left">
 						Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!
 					</marquee>

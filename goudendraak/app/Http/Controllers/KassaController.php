@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Order_Dish;
+use App\Models\Dish;
 
 class KassaController extends Controller
 {
@@ -46,6 +47,7 @@ class KassaController extends Controller
         $totalExVat = ($total / 106) * 100;
         $vat = $total - $totalExVat;
         $categories = Category::with('dishes')->get();
-        return view("kassa.index", compact('categories', 'overview', 'total', 'totalExVat', 'vat', 'beginDate', 'endDate'));
+        $dishes = Dish::all();
+        return view("kassa.index", compact('categories', 'overview', 'total', 'totalExVat', 'vat', 'beginDate', 'endDate', 'dishes'));
     }
 }

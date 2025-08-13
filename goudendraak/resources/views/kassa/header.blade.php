@@ -25,7 +25,9 @@
             <button id='salesBtn' class='menuButton'>
                 Verkoop Overzicht
             </button>
-
+            <button id='offerBtn' class='menuButton'>
+                Aanbiedingen
+            </button>
             <a class='menuLink' href='/logout'>
                 <div class='menuButton'>
                     Log Uit

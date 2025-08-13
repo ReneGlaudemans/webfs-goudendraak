@@ -1,8 +1,6 @@
 @extends('app')
-
 @section('content')
 	<table width=100%>
-
 		<tr style="padding-top:50px">
 			<td colspan="3" height="50px">
 			</td>

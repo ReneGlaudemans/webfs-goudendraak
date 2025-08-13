@@ -12,11 +12,13 @@ return new class extends Migration {
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dish_id')->constrained('dishes');
+            $table->string('dish_id');
             $table->decimal('new_price', 6, 2);
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
+
+            $table->foreign('dish_id')->references('id')->on('dishes')->onDelete('cascade');
         });
     }
 

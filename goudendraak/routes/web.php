@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KassaController;
 use App\Http\Controllers\KassaOrderController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin'])->group(function () {
@@ -27,8 +28,10 @@ Route::view('/', 'welcome');
 Route::get('/kassa', [KassaController::class, 'index'])->name('kassa.index');
 Route::middleware(['auth'])->group(function () {
     Route::post('/kassa/pay', [KassaOrderController::class, 'pay'])->name('kassa.pay');
+    Route::resource('/offers', OfferController::class);
     Route::get('/sales/download', [SalesController::class, 'download'])->name('sales.download');
 });
+Route::get('/aanbiedingen', [OfferController::class, 'aanbiedingen'])->name('aanbiedingen.aanbiedingen');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/restaurant', [RestaurantController::class, 'index'])->name('restaurant.index');
 Route::get('/table/{id}', [RestaurantController::class, 'show'])->name('restaurant.show');
