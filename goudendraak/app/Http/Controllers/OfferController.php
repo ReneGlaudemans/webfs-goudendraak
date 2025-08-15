@@ -36,7 +36,16 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'dish_id' => ['required', 'string', 'exists:dishes,id'],
+            'new_price' => ['required', 'numeric', 'min:0'],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date', 'after_or_equal:start_date'],
+        ]);
+
+        Offer::create($validated);
+
+        return redirect()->route('kassa.index')->with('success', 'Aanbieding succesvol toegevoegd!');
     }
 
     /**

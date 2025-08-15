@@ -30,7 +30,6 @@
 
                     <input type="hidden" name="id" value="{{ $item['id'] }}">
                     {{-- <input type="text" name="remark" value="{{ $item['remark'] ?? '' }}" placeholder="Add a remark (optional)"> --}}
-
                     <button type="submit" class="text-white bg-yellow-700 focus:ring-4 hover:bg-yellow-500 rounded-lg px-5 py-2.5 me-2 mb-2">Updaten</button>
 
                 </form>

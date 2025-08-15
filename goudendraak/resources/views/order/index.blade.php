@@ -1,60 +1,184 @@
 @extends('app')
 @section('content')
+   <style>
+      body {
+        background: #f2f2f2;
+        font-family: 'Roboto', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
-<button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-   <span class="sr-only">Open sidebar</span>
-   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-   </svg>
-</button>
+      .terminal-wrapper {
+        max-width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        padding: 40px 32px;
+        display: flex;
+        gap: 40px;
+      }
 
-<aside id="default-sidebar" class="absolute top-100 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-      <ul class="space-y-2 font-medium">
-         @foreach($categories as $category)
-         <li>
-            <button data-drawer-toggle="category-{{ $category->id }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               {{$category->name}}
-            </button>
-         </li>
-         @endforeach
-      </ul>
-   </div>
-</aside>
+      .sidebar {
+        width: 320px;
+        background: #ffe600;
+        border-radius: 18px;
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      }
 
-<div class="p-4 sm:ml-64">
-   <div class="flex-1 p-6">
-      @if (session('success'))
-      <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50">
-         <div class="font-medium">{{ session('success') }}</div>
+      .sidebar-logo {
+        width: 120px;
+        margin-bottom: 24px;
+      }
+
+      .sidebar-title {
+        font-size: 2em;
+        font-weight: bold;
+        color: #d1111b;
+        margin-bottom: 18px;
+        text-align: center;
+        letter-spacing: 2px;
+      }
+
+      .sidebar-info {
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 18px;
+        text-align: center;
+      }
+
+      .menu-main {
+        flex: 1;
+        padding-left: 24px;
+      }
+
+      .menu-section {
+        margin-bottom: 36px;
+      }
+
+      .section-title {
+        font-size: 1.5em;
+        color: #d1111b;
+        font-weight: bold;
+        margin-bottom: 18px;
+        border-bottom: 2px solid #ffe600;
+        padding-bottom: 6px;
+        letter-spacing: 1px;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .menu-item {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        padding: 18px 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: box-shadow 0.2s;
+      }
+
+      .menu-item:hover {
+        box-shadow: 0 4px 16px rgba(209, 17, 27, 0.15);
+        border: 2px solid #ffe600;
+      }
+
+      .item-name {
+        font-size: 1.15em;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .item-desc {
+        font-size: 0.98em;
+        color: #666;
+        font-style: italic;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .item-price {
+        font-size: 1.1em;
+        color: #d1111b;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+
+      .order-btn {
+        background: #d1111b;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 24px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .order-btn:hover {
+        background: #a80c15;
+      }
+
+      @media (max-width: 900px) {
+        .terminal-wrapper {
+          flex-direction: column;
+          padding: 20px 8px;
+        }
+
+        .sidebar {
+          width: 100%;
+          margin-bottom: 24px;
+        }
+
+        .menu-main {
+          padding-left: 0;
+        }
+
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+   </style>
+
+   <div class="terminal-wrapper">
+      <div class="sidebar">
+        <img src="{{ asset('img/golden-dragon-logo.png') }}" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-title">Bestel hier!</div>
+        <div class="sidebar-info">
+          Welkom bij De Gouden Draak.<br>
+          Kies uw gerechten en voeg ze toe aan uw bestelling.<br>
+          <span style="color:#d1111b; font-weight:bold;">Snelle service, direct afhalen!</span>
+        </div>
       </div>
-      @endif
-      @foreach($categories as $category)
-      <div id="category-{{ $category->id }}" class="hidden">
-         <h2 class="text-2xl font-semibold mb-4">{{ $category->name }}</h2>
-         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="menu-main">
+        @foreach($categories as $category)
+         <div class="menu-section">
+           <div class="section-title">{{ $category->name }}</div>
+           <div class="menu-grid">
             @foreach($category->dishes as $dish)
-            <div class="bg-white shadow-md rounded-lg p-4">
-               <h3 class="text-xl font-semibold">{{ $dish->name }}</h3>
-               <p class="text-gray-500">€ {{ number_format($dish->price, 2) }}</p>
-               <p class="mt-2 text-gray-600">{{ $dish->description }}</p>
-               <form action="{{route('order.add')}}" method="post">
-                  @csrf
-                  <input type="hidden" name="id" value="{{$dish->id}}">
-                  <input type="hidden" name="name" value="{{ $dish->name }}">
-                  <input type="hidden" name="price" value="{{ $dish->price }}">
-                  <label for="quantity">Quantity</label>
-                  <input type="number" name="quantity" value="1" min="1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                  <label for="remark" >Remark</label>
-                  <input type="text" name="remark" placeholder="Add a remark (optional)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Add to Order</button>
-               </form>
+            <div class="menu-item">
+               <div class="item-name">{{ $dish->name }}</div>
+               @if($dish->description)
+               <div class="item-desc">{{ $dish->description }}</div>
+            @endif
+               <div class="item-price">€{{ number_format($dish->price, 2, ',', '') }}</div>
+               <button class="order-btn">Toevoegen</button>
             </div>
-            @endforeach
+           @endforeach
+           </div>
          </div>
+       @endforeach
       </div>
-      @endforeach
-   </div>
-</div>
-
-@endsection
+   @endsection
