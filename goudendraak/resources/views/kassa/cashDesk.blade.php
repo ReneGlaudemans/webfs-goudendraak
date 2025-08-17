@@ -15,16 +15,32 @@
                     <table class='itemSelectedTable'>
                         @foreach($categories as $category)
                             @foreach($category->dishes as $dish)
-                                <tr class="hidden menuItem_{{ $dish->id }}" data-price="{{ $dish->price }}">
+                                @php
+                                    $activeOffer = $dish->offers
+                                        ->where('start_date', '<=', now())
+                                        ->where('end_date', '>=', now())
+                                        ->first();
+                                    $price = $activeOffer ? $activeOffer->new_price : $dish->price;
+                                @endphp
+                                <tr class="hidden menuItem_{{ $dish->id }}" data-price="{{ $price }}">
                                     <td>{{ $dish->id ?? '' }}.</td>
-                                    <td>{{ $dish->name }}
+                                    <td>
+                                        {{ $dish->name }}
                                         @if(!empty($dish->description))
                                             <i>({{ $dish->description }})</i>
+                                        @endif
+                                        @if($activeOffer)
+                                            <span class="menuItem_aanbieding">Aanbieding!</span>
                                         @endif
                                     </td>
                                     <td>
                                         <span>€ </span>
-                                        <span class="subAmount">{{ number_format($dish->price, 2, ',', ' ') }}</span>
+                                        <span class="subAmount">{{ number_format($price, 2, ',', ' ') }}</span>
+                                        @if($activeOffer)
+                                            <span class="oldPrice">
+                                                €{{ number_format($dish->price, 2, ',', ' ') }}
+                                            </span>
+                                        @endif
                                     </td>
                                     <td>
                                         <input type="number" name="dishes[{{ $dish->id }}]" min="0" value="0">
@@ -57,39 +73,3 @@
         </div>
     </div>
 </div>
-<script>
-    window.addMenuItem = function (id) {
-        var row = document.querySelector(".itemSelectedTable .menuItem_" + id);
-        if (row) {
-            row.classList.remove("hidden");
-            row.classList.add("selected");
-            var input = row.querySelector("input");
-            var currentValue = parseInt(input.value) || 0;
-            input.value = currentValue + 1; // verhoog met 1
-            row.querySelector(".subAmount").innerHTML = (parseFloat(row.dataset["price"]) * input.value).toFixed(2).replace(".", ",");
-            window.updateTotal();
-        }
-    }
-    window.updateTotal = function () {
-        var selectedItems = document.querySelectorAll(".itemSelectedTable .selected .subAmount");
-        var total = 0;
-        for (var selectedIndex = 0; selectedIndex < selectedItems.length; selectedIndex++) {
-            total += parseFloat(selectedItems[selectedIndex].innerHTML.replace(",", "."));
-        }
-        document.querySelector(".totalAmount").innerHTML = total.toFixed(2).replace(".", ",");
-    }
-    document.querySelector('form').addEventListener('reset', function () {
-        // Alle menuItem-rijen verbergen en deselecteren
-        document.querySelectorAll('.itemSelectedTable tr[class^="menuItem_"]').forEach(function (row) {
-            row.classList.add('hidden');
-            row.classList.remove('selected');
-            row.querySelector("input").value = 0;
-            if (row.querySelector(".subAmount")) {
-                row.querySelector(".subAmount").innerHTML = parseFloat(row.dataset["price"]).toFixed(2).replace(".", ",");
-            }
-        });
-        // Totaalbedrag resetten
-        document.querySelector(".totalAmount").innerHTML = "0,00";
-    });
-</script>
-<script src="{{ asset('js/cashDesk.js') }}"></script>

@@ -1,53 +1,5 @@
 @extends('app')
 @section('content')
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        nav {
-            float: left;
-            width: 30%;
-            background: #9e0a0a;
-            padding: 20px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            text-align: left;
-        }
-
-        article {
-            float: left;
-            padding: 20px;
-            width: 70%;
-            background-color: #9e0a0a;
-        }
-
-        @media (max-width: 600px) {
-
-            nav,
-            article {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        .cart {
-            position: relative;
-            float: right;
-            width: 50px;
-            height: 50px;
-        }
-
-        .gerecht {
-            /* text-align: left; */
-            display: flex;
-            width: 100%
-        }
-    </style>
-
     <section>
         <nav>
             <ul>
@@ -63,18 +15,27 @@
                         <img class="cart" src="{{ asset('img/cart.png') }}" alt="The Golden Dragon">
                     </a>
                 </div>
-                @if (session('success'))
-                    <div>
-                        <div>{{ session('success') }}</div>
+                @if(session('success'))
+                    <div class="successmessage">
+                        {{ session('success') }}
                     </div>
                 @endif
-                <div>
+                @if($errors->any())
+                    <div class="errormessage">
+                        <ul style="list-style:none; margin:0; padding:0;">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div class="afhalen-categories">
                     @foreach($categories as $category)
                         <div id="{{ $category->name }}">
                             <h2 style="text-align:center;color:yellow;font-size:30px">{{ $category->name }}</h2>
                             <table style="width:100%">
                                 @foreach($category->dishes as $dish)
-                                    <tr>
+                                    <tr style="width:100%">
                                         <td>
                                             <h3>{{ $dish->name }}</h3>
                                         </td>

@@ -101,8 +101,7 @@ if(payOrderButton != null){
 
             document.querySelector(".totalAmount").innerHTML = "0,00";
         } else {
-            modal.querySelector("p").innerHTML = "Niets geselecteerd";
-            modal.style.display = "block";
+            
         }
     });
 } else {
@@ -119,3 +118,36 @@ window.onclick = function(event){
         modal.style.display = "none";
     }
 }
+window.addMenuItem = function (id) {
+        var row = document.querySelector(".itemSelectedTable .menuItem_" + id);
+        if (row) {
+            row.classList.remove("hidden");
+            row.classList.add("selected");
+            var input = row.querySelector("input");
+            var currentValue = parseInt(input.value) || 0;
+            input.value = currentValue + 1; // verhoog met 1
+            row.querySelector(".subAmount").innerHTML = (parseFloat(row.dataset["price"]) * input.value).toFixed(2).replace(".", ",");
+            window.updateTotal();
+        }
+}
+window.updateTotal = function () {
+    var selectedItems = document.querySelectorAll(".itemSelectedTable .selected .subAmount");
+    var total = 0;
+    for (var selectedIndex = 0; selectedIndex < selectedItems.length; selectedIndex++) {
+        total += parseFloat(selectedItems[selectedIndex].innerHTML.replace(",", "."));
+    }
+    document.querySelector(".totalAmount").innerHTML = total.toFixed(2).replace(".", ",");
+}
+document.querySelector('form').addEventListener('reset', function () {
+    // Alle menuItem-rijen verbergen en deselecteren
+    document.querySelectorAll('.itemSelectedTable tr[class^="menuItem_"]').forEach(function (row) {
+        row.classList.add('hidden');
+        row.classList.remove('selected');
+        row.querySelector("input").value = 0;
+        if (row.querySelector(".subAmount")) {
+            row.querySelector(".subAmount").innerHTML = parseFloat(row.dataset["price"]).toFixed(2).replace(".", ",");
+        }
+    });
+     // Totaalbedrag resetten
+    document.querySelector(".totalAmount").innerHTML = "0,00";
+});

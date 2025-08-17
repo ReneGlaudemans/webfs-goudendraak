@@ -15,7 +15,7 @@
         <a href="/dishes">Gerechten</a>
         <a href="/categories">Categorieën</a>
         <a
-            href="{{ route('kassa.index', ['begindate' => \Carbon\Carbon::today()->format('Y-m-d'), 'enddate' => \Carbon\Carbon::today()->format('Y-m-d')]) }}">
+            href="{{ route('kassa.index', ['begindate' => \Carbon\Carbon::today()->format('Y-m-d'), 'enddate' => \Carbon\Carbon::tomorrow()->format('Y-m-d')]) }}">
             Verkoopoverzicht
         </a>
         <a href="/logout">Uitloggen</a>

@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::with('dishes')->get();
+        $categories = Category::with(['dishes.offers'])->get();
         return view('afhalen.index', compact('categories'));
     }
 

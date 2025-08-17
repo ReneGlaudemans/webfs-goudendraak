@@ -46,7 +46,7 @@ class KassaController extends Controller
         }
         $totalExVat = ($total / 106) * 100;
         $vat = $total - $totalExVat;
-        $categories = Category::with('dishes')->get();
+        $categories = Category::with(['dishes.offers'])->get();
         $dishes = Dish::all();
         return view("kassa.index", compact('categories', 'overview', 'total', 'totalExVat', 'vat', 'beginDate', 'endDate', 'dishes'));
     }

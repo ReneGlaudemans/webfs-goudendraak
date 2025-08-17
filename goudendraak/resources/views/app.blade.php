@@ -1,37 +1,13 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-100">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>The Golden Dragon</title>
 	<link rel="stylesheet" href="{{asset('css/app.css')}}" />
-
-	<style>
-		body {
-			background-color: darkred;
-			margin: 15px;
-			margin-left: 50px;
-			margin-right: 50px
-		}
-
-		td {
-			padding: 0px;
-		}
-
-		@font-face {
-			font-family: 'chinese_takeawayregular';
-			src: url('{{ asset('fonts/chinesetakeaway-webfont.woff2') }}') format('woff2'),
-				url('{{ asset('fonts/chinesetakeaway-webfont.woff') }}') format('woff');
-			font-weight: normal;
-			font-style: normal;
-		}
-
-		a {
-			text-decoration: none;
-			color: yellow;
-		}
-	</style>
+	<link rel="stylesheet" href="{{asset('css/contact.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/afhalen.css')}}" />
 </head>
 
 <body>
@@ -39,11 +15,9 @@
 		<tr style="height:50px;background-color:red">
 			<td style="text-align:center;width:30%;color:yellow;font-size:30px">
 				<a href="/">
-					<img style="vertical-align: middle;" src="{{ asset('img/dragon-small.png') }}" alt="Golden Dragon"
-						height="50px">
+					<img src="{{ asset('img/dragon-small.png') }}" alt="Golden Dragon" height="50px">
 					<span style="font-family:'chinese_takeawayregular'">De Gouden Draak</span>
-					<img style="vertical-align: middle;" src="{{ asset('img/dragon-small-flipped.png') }}"
-						alt="Golden Dragon" height="50px">
+					<img src="{{ asset('img/dragon-small-flipped.png') }}" alt="Golden Dragon" height="50px">
 				</a>
 			</td>
 			<td>
@@ -54,11 +28,9 @@
 				</a>
 			</td>
 			<td style="text-align:center;width:30%;color:yellow;font-size:30px">
-				<img style="vertical-align: middle;" src="{{ asset('img/dragon-small.png') }}" alt="Golden Dragon"
-					height="50px">
+				<img src="{{ asset('img/dragon-small.png') }}" alt="Golden Dragon" height="50px">
 				<span style="font-family:'chinese_takeawayregular'">De Gouden Draak</span>
-				<img style="vertical-align: middle;" src="{{ asset('img/dragon-small-flipped.png') }}"
-					alt="Golden Dragon" height="50px">
+				<img src="{{ asset('img/dragon-small-flipped.png') }}" alt="Golden Dragon" height="50px">
 			</td>
 		</tr>
 	</table>

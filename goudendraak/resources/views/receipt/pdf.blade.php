@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt</title>
     <style>
-         @page {
-            size: 8.5cm 10cm; /* Custom page size */
+        @page {
+            size: 8.5cm 10cm;
+            /* Custom page size */
             margin: 0;
         }
+
         body {
             font-family: Arial, sans-serif;
             font-size: 14px;
@@ -17,32 +20,41 @@
             width: 8.5cm;
             height: 10cm;
         }
+
         .receipt-header {
             text-align: center;
             margin-bottom: 20px;
         }
+
         .receipt-table {
             width: 100%;
             border-collapse: collapse;
         }
-        .receipt-table th, .receipt-table td {
+
+        .receipt-table th,
+        .receipt-table td {
             border: 1px solid #000;
             padding: 8px;
             text-align: left;
         }
+
         .receipt-table th {
             background-color: #f2f2f2;
         }
+
         .total {
             font-weight: bold;
             text-align: right;
         }
+
         img {
-            width: 100px; /* Adjust as needed */
+            width: 100px;
+            /* Adjust as needed */
             margin-bottom: 10px;
         }
     </style>
 </head>
+
 <body>
     <div class="receipt-header">
         <img src="{{ public_path('img/dragon-small.png') }}" alt="De gouden draak">
@@ -85,4 +97,5 @@
         </tfoot>
     </table>
 </body>
+
 </html>
