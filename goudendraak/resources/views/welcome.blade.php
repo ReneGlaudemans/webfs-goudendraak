@@ -1,14 +1,9 @@
 @extends('app')
 @section('content')
-	<table width=100%>
-		<tr style="padding-top:50px">
-			<td colspan="3" height="50px">
-			</td>
-		</tr>
-		<tr style="padding-top:50px">
-			<td width="50px">
-			</td>
-			<td align="center" style='font-size:5;border:1px solid black;background:floralwhite'> <br>
+	<table class="info-table">
+		<tr>
+			<td class="side-cell"></td>
+			<td align="center" class="info-cell"> <br>
 				<h3>Al jaren is De Gouden Draak een begrip als het gaat om de beste afhaalgerechten in 's-Hertogenbosch.<br>
 					Graag trakteren we u op authentieke gerechten uit de Cantonese keuken.</h3>
 				<br>
@@ -16,7 +11,7 @@
 				<h1>Chinese Rijsttafel (2 personen)</h1>
 				<h3>
 					Maak een keuze uit 3 van onderstaande keuzegerechten:<br><br>
-					<table width="60%">
+					<table width="60%" align="center">
 						<tr>
 							<td width="40%" style="text-align:right">
 								Koe Loe Yuk
@@ -53,8 +48,7 @@
 				</h3>
 				<h1>Prijs: €21,00</h1>
 			</td>
-			<td width="50px">
-			</td>
+			<td class="side-cell"></td>
 		</tr>
 	</table>
 @endsection

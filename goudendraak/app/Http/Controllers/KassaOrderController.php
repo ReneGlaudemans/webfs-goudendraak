@@ -31,11 +31,13 @@ class KassaOrderController extends Controller
 
         foreach ($filteredDishes as $dishId => $amount) {
             $remark = $request->input('remarks.' . $dishId);
+            $sideId = $request->input('bijgerecht.' . $dishId);
             Order_Dish::create([
                 'order_id' => $order->id,
                 'dish_id' => $dishId,
                 'quantity' => $amount,
                 'remark' => $remark,
+                'side_id' => $sideId !== 'geen' ? $sideId : null,
             ]);
         }
 

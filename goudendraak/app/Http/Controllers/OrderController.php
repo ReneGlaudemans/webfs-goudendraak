@@ -73,7 +73,7 @@ class OrderController extends Controller
         // Save the updated order in the session
         session()->put('order', $order);
 
-        return redirect()->route('order.view')->with('success', 'Order updated successfully.');
+        return redirect()->route('order.view')->with('success', 'Bestelling successvol geupdate.');
     }
 
     // Remove item from the order
@@ -87,7 +87,7 @@ class OrderController extends Controller
         // Save the updated order
         session()->put('order', $order);
 
-        return redirect()->route('order.view')->with('success', 'Item removed from order.');
+        return redirect()->route('order.view')->with('success', 'Item verwijderd van bestelling.');
     }
     //store the order
     public function store(Request $request)
@@ -95,7 +95,7 @@ class OrderController extends Controller
         // Get the order items (this could be from session, or a Cart model/service)
         $order = session()->get('order', []);
         if (empty($order)) {
-            return redirect()->back()->with('error', 'Your order is empty!');
+            return redirect()->back()->with('error', 'Je bestelling is leeg!');
         }
 
         // Create a new order

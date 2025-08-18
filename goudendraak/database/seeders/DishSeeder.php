@@ -39,7 +39,7 @@ class DishSeeder extends Seeder
         Dish::create([
             'id' => '4',
             'category_id' => 1,
-            'name' => 'Haalevinnensoep',
+            'name' => 'Haaievinnensoep',
             'description' => '',
             'price' => 3.10
         ]);
@@ -202,13 +202,6 @@ class DishSeeder extends Seeder
             'name' => 'Tsa Sieuw Maa',
             'description' => '',
             'price' => 4.30
-        ]);
-        Dish::create([
-            'id' => '23',
-            'category_id' => 1,
-            'name' => 'Patat',
-            'description' => '',
-            'price' => 2.3
         ]);
 
         Dish::create([

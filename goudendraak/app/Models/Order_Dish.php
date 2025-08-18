@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order_Dish extends Model
 {
     use HasFactory;
-    public $fillable = ['quantity', 'order_id', 'dish_id', 'remark'];
+    public $fillable = ['quantity', 'order_id', 'dish_id', 'remark', 'side_id'];
 
     protected $table = 'order__dishes';
 
@@ -19,5 +19,9 @@ class Order_Dish extends Model
     public function Dish()
     {
         return $this->belongsTo(Dish::class);
+    }
+    public function Side()
+    {
+        return $this->belongsTo(Side::class);
     }
 }

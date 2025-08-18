@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,7 +15,8 @@ return new class extends Migration
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->string('dish_id')->references('id')->on('dishes');
             $table->integer('quantity');
-            $table->string('remark')->nullable();;
+            $table->string('remark')->nullable();
+            $table->foreignId('side_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

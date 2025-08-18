@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Order_Dish;
 use App\Models\Dish;
-
+use App\Models\Side;
 class KassaController extends Controller
 {
     public function index(Request $request)
@@ -46,8 +46,9 @@ class KassaController extends Controller
         }
         $totalExVat = ($total / 106) * 100;
         $vat = $total - $totalExVat;
+        $sides = Side::all();
         $categories = Category::with(['dishes.offers'])->get();
         $dishes = Dish::all();
-        return view("kassa.index", compact('categories', 'overview', 'total', 'totalExVat', 'vat', 'beginDate', 'endDate', 'dishes'));
+        return view("kassa.index", compact('categories', 'overview', 'total', 'totalExVat', 'vat', 'beginDate', 'endDate', 'dishes', 'sides'));
     }
 }

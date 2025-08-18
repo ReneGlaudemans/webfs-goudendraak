@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             DishSeeder::class,
             TableSeeder::class,
             OrderSeeder::class,
-            SaleSeeder::class
+            SaleSeeder::class,
+            SideSeeder::class
         ]);
     }
 }

@@ -43,11 +43,18 @@
                                         @endif
                                     </td>
                                     <td>
+                                        <select name="bijgerecht[{{ $dish->id }}]">
+                                            <option value="geen">Geen bijgerecht</option>
+                                            @foreach($sides as $side)
+                                                <option value="{{ $side->id }}">{{ $side->side }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
                                         <input type="number" name="dishes[{{ $dish->id }}]" min="0" value="0">
                                     </td>
                                     <td>
-                                        <input type="text" name="remarks[{{ $dish->id }}]"
-                                            placeholder="Opmerking voor {{ $dish->name }}" />
+                                        <input type="text" name="remarks[{{ $dish->id }}]" placeholder="Opmerking" />
                                     </td>
                                 </tr>
                             @endforeach
