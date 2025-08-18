@@ -32,10 +32,14 @@ class CategoryController extends Controller
         $request->validate([
             'name' => ['required', 'unique:categories'],
         ]);
-        Category::create([
-            'name' => $request->name,
-        ]);
-        return redirect('categories');
+        try {
+            Category::create([
+                'name' => $request->name,
+            ]);
+            return redirect('categories')->with('success', 'Categorie succesvol toegevoegd!');
+        } catch (\Exception $e) {
+            return redirect('categories')->withErrors(['error' => 'Categorie kon niet worden toegevoegd.']);
+        }
     }
 
     /**
@@ -64,11 +68,15 @@ class CategoryController extends Controller
         $request->validate([
             'name' => ['required', 'unique:categories'],
         ]);
-        $category = Category::findOrFail($id);
-        $category->update([
-            'name' => $request->name,
-        ]);
-        return redirect('categories/' . $category->id);
+        try {
+            $category = Category::findOrFail($id);
+            $category->update([
+                'name' => $request->name,
+            ]);
+            return redirect('categories/' . $category->id)->with('success', 'Categorie succesvol bijgewerkt!');
+        } catch (\Exception $e) {
+            return redirect('categories/' . $id)->withErrors(['error' => 'Categorie kon niet worden bijgewerkt.']);
+        }
     }
 
     /**
@@ -76,7 +84,12 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        Category::findOrFail($id)->delete();
-        return redirect('categories');
+        try {
+            Category::findOrFail($id)->delete();
+            return redirect('categories')->with('success', 'Categorie succesvol verwijderd!');
+        } catch (\Exception $e) {
+            return redirect('categories')->withErrors(['error' => 'Categorie kon niet worden verwijderd.']);
+        }
+
     }
 }

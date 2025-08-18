@@ -10,7 +10,7 @@ class MenuController extends Controller
 {
     public function exportToPDF()
     {
-        $categories = Category::with('dishes')->get();
+        $categories = Category::with(['dishes.offers'])->get();
         $pdf = Pdf::loadView('menu.pdf', compact('categories'));
         return $pdf->setPaper('a4', 'landscape')->download('menu.pdf');
     }

@@ -95,27 +95,27 @@
 							<table style="margin:auto;font-size:20px;color:white" border="1px solid white">
 								<tr background="{{ asset('img/menu_bg_gradient.png') }}">
 									<td valign="middle">
-										<a href="/menukaart" style="color:white">
+										<a href="/menukaart" class="text-white">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Menukaart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</a>
 									</td>
 									<td valign="middle">
-										<a href="/news" style="color:white">
+										<a href="/news" class="text-white">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nieuws&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</a>
 									</td>
 									<td valign="middle">
-										<a href="/contact" style="color:white">
+										<a href="/contact" class="text-white">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</a>
 									</td>
 									<td valign="middle">
-										<a href="/orders" style="color:white">
+										<a href="/orders" class="text-white">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Afhalen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</a>
 									</td>
 									<td valign="middle">
-										<a href="/menu/pdf" style="color:white">
+										<a href="/menu/pdf" class="text-white">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download
 											menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</a>

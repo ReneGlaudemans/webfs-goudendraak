@@ -46,3 +46,27 @@ img{
     border-radius:6px; 
     text-align:center;
 }
+.info-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 32px;
+}
+.side-cell {
+    width: 50px;
+}
+.info-cell {
+    font-size: 1.3em;
+    border: 1px solid black;
+    background: floralwhite;
+    text-align: center;
+    color: #222;
+}
+.text-red{
+    color:#c00;
+}
+.text-yellow{
+    color: yellow;
+}
+.text-white{
+    color: white;
+}

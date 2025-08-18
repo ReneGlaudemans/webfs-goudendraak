@@ -1,215 +1,139 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menukaart - De Gouden Draak</title>
-    <style>
-        html,
-        body {
-            height: 100%;
-            background: #f9f7e3 !important;
-        }
-
-        body {
-            min-height: 100vh;
-            background: #f9f7e3 !important;
-            font-family: 'Times New Roman', Times, serif;
-            color: #2d2d2d;
-            margin: 0;
-            padding: 0;
-        }
-
-        .menu-wrapper {
-            max-width: 1200px;
-            margin: 40px auto;
-            background: #f9f7e3;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
-            padding: 40px 32px;
-            display: flex;
-            gap: 40px;
-        }
-
-        .menu-left,
-        .menu-right {
-            flex: 1;
-        }
-
-        .menu-title {
-            text-align: center;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #c00;
-            margin-bottom: 10px;
-            font-family: 'Georgia', serif;
-            letter-spacing: 2px;
-        }
-
-        .menu-logo {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 320px;
-        }
-
-        .menu-section {
-            margin-bottom: 36px;
-        }
-
-        .section-title {
-            font-size: 1.3em;
-            color: #c00;
-            border-bottom: 2px solid #c00;
-            padding-bottom: 6px;
-            margin-bottom: 18px;
-            font-family: 'Georgia', serif;
-            letter-spacing: 1px;
-        }
-
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-            font-size: 1.05em;
-        }
-
-        .item-details {
-            max-width: 75%;
-        }
-
-        .item-name {
-            font-weight: bold;
-            color: #2d2d2d;
-        }
-
-        .item-desc {
-            font-size: 0.98em;
-            color: #666;
-            font-style: italic;
-        }
-
-        .item-price {
-            font-family: 'Georgia', serif;
-            font-size: 1.05em;
-            color: #2d2d2d;
-            font-weight: bold;
-            min-width: 70px;
-            text-align: right;
-        }
-
-        .menu-item:not(:last-child) {
-            border-bottom: 1px dotted #c00;
-            padding-bottom: 6px;
-        }
-
-        .menu-info {
-            margin-top: 30px;
-            font-size: 1em;
-            color: #444;
-            line-height: 1.6;
-        }
-
-        .menu-info-title {
-            font-weight: bold;
-            color: #c00;
-            margin-bottom: 8px;
-        }
-
-        .menu-highlight {
-            background: #e2c48d;
-            color: #2d2d2d;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-bottom: 18px;
-            font-size: 1.1em;
-        }
-
-        .menu-right .menu-info {
-            margin-top: 0;
-        }
-
-        .menu-right {
-            padding-left: 30px;
-            border-left: 2px solid #e2c48d;
-        }
-
-        .menu-footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #888;
-            font-size: 0.95em;
-        }
-
-        @media (max-width: 900px) {
-            .menu-wrapper {
-                flex-direction: column;
-                padding: 20px 8px;
-            }
-
-            .menu-right {
-                border-left: none;
-                padding-left: 0;
-            }
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>De Gouden Draak Menu</title>
 </head>
+<style>
+    * {
+        background: #f9f7e3;
+    }
+
+    .menu-container {
+        column-count: 3;
+        gap: 32px;
+    }
+
+    .menu-category {
+        break-inside: avoid;
+        margin-bottom: 32px;
+    }
+
+    .menu-category-title {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #c00;
+        margin-bottom: 12px;
+    }
+
+    .menu-dish {
+        margin-bottom: 12px;
+    }
+
+    .menu-dish-name {
+        font-weight: bold;
+    }
+
+    .menu-dish-desc {
+        font-size: 0.98em;
+        color: #666;
+        font-style: italic;
+    }
+
+    .menu-dish-price {
+        font-weight: bold;
+        color: #222;
+    }
+</style>
 
 <body>
-    <div class="menu-wrapper">
-        <div class="menu-left">
-            <img src="{{ asset('img/golden-dragon-logo.png') }}" alt="Golden Dragon Logo" class="menu-logo">
-            <div class="menu-title">AFHAALLIJST</div>
-            {{-- Example dishes loop --}}
-            @foreach($categories as $category)
-                <div class="menu-section">
-                    <div class="section-title">{{ $category->name }}</div>
-                    @foreach($category->dishes as $dish)
-                        <div class="menu-item">
-                            <div class="item-details">
-                                <span class="item-name">{{ $dish->name }}</span>
-                                @if($dish->description)
-                                    <div class="item-desc">{{ $dish->description }}</div>
-                                @endif
-                            </div>
-                            <div class="item-price">€{{ number_format($dish->price, 2, ',', '') }}</div>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
-        </div>
-        <div class="menu-right">
-            <div class="menu-title" style="font-size:1.5em; margin-bottom:20px;">Chinees Specialiteiten Restaurant</div>
-            <div class="menu-info">
-                <div class="menu-info-title">Openingstijden</div>
-                ma. t/m do: 15.30 - 21.00 uur<br>
-                vr t/m zo: 12.00 - 21.00 uur
+    <div class="menu-container">
+        @foreach($categories as $category)
+            <div class="menu-category">
+                <div class="menu-category-title">{{ $category->name }}</div>
+                @foreach($category->dishes as $dish)
+                    <div class="menu-dish">
+                        <span class="menu-dish-name">{{ $dish->name }}</span>
+                        @if($dish->description)
+                            <span class="menu-dish-desc"> - {{ $dish->description }}</span>
+                        @endif
+                        <span class="menu-dish-price"> (€{{ number_format($dish->price, 2, ',', '') }})</span>
+                    </div>
+                @endforeach
             </div>
-            <div class="menu-info">
-                <div class="menu-info-title">Bestellen & Service</div>
+        @endforeach
+        @php
+            $now = now();
+            $validOffers = collect();
+            foreach ($categories as $category) {
+                foreach ($category->dishes as $dish) {
+                    foreach ($dish->offers as $offer) {
+                        if ($offer->start_date <= $now && $offer->end_date >= $now) {
+                            $validOffers->push($offer);
+                        }
+                    }
+                }
+            }
+        @endphp
+        @if($validOffers->count())
+            <div class="menu-category" style="margin-top:48px;">
+                <div class="menu-category-title">Aanbiedingen</div>
+                @foreach($validOffers as $offer)
+                    <div class="menu-dish">
+                        <span class="menu-dish-name">{{ $offer->dish->name }}</span>
+                        @if($offer->dish->description)
+                            <span class="menu-dish-desc"> - {{ $offer->dish->description }}</span>
+                        @endif
+                        <span class="menu-dish-price" style="color:#c00;">
+                            (€{{ number_format($offer->new_price, 2, ',', '') }})
+                        </span>
+                        <span style="text-decoration:line-through; color:#888; margin-left:6px;">
+                            €{{ number_format($offer->dish->price, 2, ',', '') }}
+                        </span>
+                        <span style="margin-left:8px; color:#444;">
+                            ({{ $offer->start_date }} t/m {{ $offer->end_date }})
+                        </span>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+        <div style=" padding:40px 0; margin-top:48px; text-align:center;">
+            <span
+                style="background:#339933; color:#fff; font-weight:bold; font-size:2em; padding:6px 24px; border-radius:4px; display:inline-block;">
+                AFHAALLIJST
+            </span>
+            <div style="font-size:1.5em; margin-bottom:18px;">Chinees Specialiteiten Restaurant</div>
+            <div style="font-size:1.2em; margin-bottom:24px;">
+                <strong>Openingstijden</strong><br>
+                ma. t/m do: 15.30 - 21.00 uur<br>
+                vr t/m zo: 12.00 - 21.30 uur
+            </div>
+            <div style="margin-bottom:18px;">
                 Mogelijkheid tot telefonisch bestellen<br>
                 Ruime parkeergelegenheid<br>
                 Catering orientaalse stijl<br>
                 Airconditioned<br>
                 Bezorgen € 2.00 extra
             </div>
-            <div class="menu-info menu-highlight">
-                Heeft u ook iets te vieren?<br>
-                Wij verzorgen een uitgebreid warm buffet.<br>
-                Zowel aan huis als op locatie.<br>
-                Wij nemen uw zorgen uit handen en u kunt zich focussen op uw gasten.
+            <div style="margin-bottom:18px; font-weight:bold;">
+                HEEFT U OOK IETS TE VIEREN?<br>
+                <span style="font-weight:normal;">
+                    Wij zorgen voor een uitgebreid warm buffet.<br>
+                    zowel aan huis als op locatie.<br>
+                    Wij nemen uw zorgen uit handen en u kunt zich focussen op uw gasten.
+                </span>
             </div>
-            <div class="menu-info">
-                <div class="menu-info-title">Allergie?</div>
-                Meld het ons<br>
-                Onze producten kunnen kruisbesmetting bevatten
-            </div>
-            <div class="menu-footer">
-                &copy; {{ date('Y') }} De Gouden Draak - Alle rechten voorbehouden
+            <div style="margin-bottom:18px;">
+                Heeft u een <span style="font-weight:bold;">Allergie?</span><br>
+                <span style="font-size:0.95em;">
+                    Meld het ons<br>
+                    onze producten kunnen kruisbesmetting bevatten
+                </span>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

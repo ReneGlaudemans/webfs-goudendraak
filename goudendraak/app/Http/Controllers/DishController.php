@@ -40,14 +40,18 @@ class DishController extends Controller
             'category' => ['required', 'exists:categories,id']
         ]);
 
-        Dish::create([
-            'id' => $request->id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'category_id' => $request->category
-        ]);
-        return redirect('dishes');
+        try {
+            Dish::create([
+                'id' => $request->id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'category_id' => $request->category
+            ]);
+            return redirect('dishes')->with('success', 'Gerecht succesvol toegevoegd!');
+        } catch (\Exception $e) {
+            return redirect('dishes')->withErrors(['error' => 'Gerecht kon niet worden toegevoegd.']);
+        }
     }
 
     /**
@@ -82,16 +86,20 @@ class DishController extends Controller
             'price' => ['required', 'numeric', 'min:0', 'max:999.99'],
             'category' => ['required', 'exists:categories,id']
         ]);
-        $dish = Dish::findOrFail($id);
+        try {
+            $dish = Dish::findOrFail($id);
 
-        $dish->update([
-            'id' => $request->id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'category_id' => $request->category
-        ]);
-        return redirect('dishes/' . $dish->id);
+            $dish->update([
+                'id' => $request->id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'category_id' => $request->category
+            ]);
+            return redirect('dishes/' . $dish->id)->with('success', 'Gerecht succesvol bijgewerkt!');
+        } catch (\Exception $e) {
+            return redirect('dishes/' . $id)->withErrors(['error' => 'Gerecht kon niet worden bijgewerkt.']);
+        }
     }
 
     /**
@@ -99,7 +107,11 @@ class DishController extends Controller
      */
     public function destroy(string $id)
     {
-        Dish::findOrFail($id)->delete();
-        return redirect('dishes');
+        try {
+            Dish::findOrFail($id)->delete();
+            return redirect('dishes')->with('success', 'Gerecht succesvol verwijderd!');
+        } catch (\Exception $e) {
+            return redirect('dishes')->withErrors(['error' => 'Gerecht kon niet worden verwijderd.']);
+        }
     }
 }
