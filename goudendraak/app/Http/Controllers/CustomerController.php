@@ -22,7 +22,7 @@ class CustomerController extends Controller
     public function create()
     {
         $tables = Table::all();
-        return view('customers.create',compact('tables'));
+        return view('customers.create', compact('tables'));
     }
 
     /**
@@ -36,15 +36,15 @@ class CustomerController extends Controller
             return redirect()->back()->withErrors(['error' => 'Table is full. No more customers can be seated.']);
         }
         $request->validate([
-            'customerage'=>['required'],
-            'table'=>['required']
+            'customerage' => ['required'],
+            'table' => ['required']
         ]);
         Customer::create([
-            'age'=>$request->customerage,
-            'deluxe'=>$request->has('deluxe'),
-            'table_id'=>$request->table,
+            'age' => $request->customerage,
+            'deluxe' => $request->has('deluxe'),
+            'table_id' => $request->table,
         ]);
-        return redirect('restaurant');
+        return redirect('restaurant')->with('success', 'Klant succesvol toegevoegd!');
     }
 
     /**
@@ -77,6 +77,6 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         Customer::findOrFail($id)->delete();
-        return redirect('restaurant');
+        return redirect('restaurant')->with('success', 'Klant succesvol verwijderd!');
     }
 }

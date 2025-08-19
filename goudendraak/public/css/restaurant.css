@@ -1,0 +1,219 @@
+.table-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+    margin: 32px;
+}
+.table-card {
+    background: #fffbe6;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 24px;
+    text-align: center;
+    font-size: 1.2em;
+}
+.table-number {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+}
+.table-status {
+    padding: 8px 0;
+    border-radius: 6px;
+    font-weight: bold;
+}
+.table-status.occupied {
+    background: #c00;
+    color: #fff;
+}
+.table-status.free {
+    background: #2ecc40;
+    color: #fff;
+}
+.customer-table-container {
+    background: #fffbe6;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 32px;
+    margin: 32px auto;
+    max-width: 900px;
+}
+.customer-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    background: #fff;
+}
+.customer-table-head {
+    background: #f7f7f7;
+}
+.customer-table-th {
+    padding: 12px 8px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #222;
+    background: #e2c48d;
+    border-radius: 6px 6px 0 0;
+}
+.customer-table-row {
+    background: #fff;
+    border-bottom: 1px solid #e2c48d;
+    transition: background 0.2s;
+}
+.customer-table-row:hover {
+    background: #f9f7e3;
+}
+.customer-table-td {
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+.inline-form {
+    display: inline;
+}
+.btn {
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-add {
+    background: #1976d2;
+    color: #fff;
+}
+.btn-add:hover {
+    background: #115293;
+}
+.btn-remove {
+    background: #e53935;
+    color: #fff;
+}
+.btn-remove:hover {
+    background: #b71c1c;
+}
+.btn-print {
+    background: #43a047;
+    color: #fff;
+}
+.btn-print:hover {
+    background: #2e7031;
+}
+.customer-table-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+.no-link-style {
+    text-decoration: none;
+    color: inherit;
+}
+.customer-create-container {
+    background: #fffbe6;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 32px;
+    margin: 32px auto;
+    max-width: 500px;
+}
+.customer-create-form {
+    display: flex;
+    flex-direction: column;
+}
+.customer-form-section {
+    margin-bottom: 24px;
+}
+.customer-form-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #c00;
+    margin-bottom: 18px;
+    text-align: center;
+}
+.customer-error-message {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 18px;
+}
+.customer-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.customer-form-group {
+    display: flex;
+    flex-direction: column;
+}
+.customer-form-label {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.customer-form-input,
+.customer-form-select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #e2c48d;
+    font-size: 1em;
+    background: #f7faff;
+}
+.customer-form-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+}
+.customer-form-error {
+    color: #c00;
+    font-size: 0.95em;
+    margin-top: 4px;
+}
+.customer-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+.customer-btn {
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.customer-btn-cancel {
+    background: #e2c48d;
+    color: #222;
+}
+.customer-btn-cancel:hover {
+    background: #c0a060;
+}
+.customer-btn-save {
+    background: #1976d2;
+    color: #fff;
+}
+.customer-btn-save:hover {
+    background: #115293;
+}
+.errormessage {
+    background:#f8d7da; 
+    color:#721c24; 
+    border:1px solid #f5c6cb; 
+    padding:12px; 
+    margin:16px 0; 
+    border-radius:6px; 
+    text-align:center;
+}
+.successmessage {
+    background:#d4edda; 
+    color:#155724; 
+    border:1px solid #c3e6cb;
+    padding:12px; 
+    margin:16px 0;
+    border-radius:6px; 
+    text-align:center;
+}

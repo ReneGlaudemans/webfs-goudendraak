@@ -14,7 +14,7 @@ class RestaurantController extends Controller
     }
 
     public function show(string $id){
-       $table = Table::findOrFail($id);
+        $table = Table::findOrFail($id);
         $customers = Customer::where('table_id',$id)->get();
         return view('restaurant.show',compact('customers','table'));
     }
