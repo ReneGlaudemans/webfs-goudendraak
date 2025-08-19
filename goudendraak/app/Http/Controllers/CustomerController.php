@@ -33,7 +33,7 @@ class CustomerController extends Controller
         $table = Table::findOrFail($request->table);
         $currentCustomerCount = $table->Customers()->count();
         if ($currentCustomerCount >= 8) {
-            return redirect()->back()->withErrors(['error' => 'Table is full. No more customers can be seated.']);
+            return redirect()->back()->withErrors(['error' => 'Tafel is vol. Verwijder eerst klanten om nieuwe toe te voegen.']);
         }
         $request->validate([
             'customerage' => ['required'],

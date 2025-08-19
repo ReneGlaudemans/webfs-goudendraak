@@ -33,7 +33,9 @@
                         <label for="table" class="customer-form-label">Tafel</label>
                         <select id="table" name="table" class="customer-form-select">
                             @foreach($tables as $table)
-                                <option value="{{$table->id}}">{{$table->id}}</option>
+                                <option value="{{$table->id}}" @if(old('table', request('table')) == $table->id) selected @endif>
+                                    {{$table->id}}
+                                </option>
                             @endforeach
                         </select>
                         @error('table')

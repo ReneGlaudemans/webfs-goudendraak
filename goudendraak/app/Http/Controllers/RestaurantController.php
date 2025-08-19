@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
-    public function index(){
-        $tables = Table::all();
-        return view('restaurant.index',compact('tables'));
+    public function index()
+    {
+        $tables = Table::with('customers')->get();
+        return view('restaurant.index', compact('tables'));
     }
 
-    public function show(string $id){
+    public function show(string $id)
+    {
         $table = Table::findOrFail($id);
-        $customers = Customer::where('table_id',$id)->get();
-        return view('restaurant.show',compact('customers','table'));
+        $customers = Customer::where('table_id', $id)->get();
+        return view('restaurant.show', compact('customers', 'table'));
     }
 }

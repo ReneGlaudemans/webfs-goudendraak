@@ -16,26 +16,22 @@ use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
     Route::resource('dishes', DishController::class);
     Route::resource('categories', CategoryController::class);
 });
-
-Route::view('/', 'welcome');
-
 Route::get('/kassa', [KassaController::class, 'index'])->name('kassa.index');
 Route::middleware(['auth'])->group(function () {
+    Route::get('/restaurant', [RestaurantController::class, 'index'])->name('restaurant.index');
+    Route::get('/table/{id}', [RestaurantController::class, 'show'])->name('restaurant.show');
+    Route::resource('customers', CustomerController::class);
     Route::post('/kassa/pay', [KassaOrderController::class, 'pay'])->name('kassa.pay');
     Route::resource('/offers', OfferController::class);
     Route::get('/sales/download', [SalesController::class, 'download'])->name('sales.download');
-});
+})->middleware('auth')->name(('kassa'));
+Route::view('/', 'welcome');
 Route::get('/aanbiedingen', [OfferController::class, 'aanbiedingen'])->name('aanbiedingen.aanbiedingen');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-Route::get('/restaurant', [RestaurantController::class, 'index'])->name('restaurant.index');
-Route::get('/table/{id}', [RestaurantController::class, 'show'])->name('restaurant.show');
-Route::resource('customers', CustomerController::class);
 Route::view('/menukaart', 'menukaart.menu');
 Route::view('/contact', 'contact.contact');
 Route::view('/news', 'news.news');
